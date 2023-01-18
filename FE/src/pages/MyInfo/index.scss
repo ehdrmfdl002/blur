@@ -1,0 +1,198 @@
+.MIProfileImgDiv {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  left: 32%;
+  top: 20%;
+  background-image: url(../../assets/images/woman.jpg);
+  background-size: 100% 100%;
+  border-radius: 70%;
+  overflow: hidden;
+  opacity: 0.3;
+
+  .MIProfilefictureSet {
+    position: absolute;
+    width: 118px;
+    height: 90px;
+    left: 661px;
+    top: 360px;
+
+    .MIProfileEditProfileAdd {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      left: 39px;
+      top: 360px;
+      background-image: url(../../assets/images/add.png);
+      background-size: 100% 100%;
+    }
+    .MIProfileEditProfileText {
+      position: absolute;
+      width: 118px;
+      height: 44px;
+      left: 0px;
+      top: 46px;
+
+      font-family: "Indie Flower";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 30px;
+      line-height: 44px;
+      /* identical to box height */
+
+      display: flex;
+      align-items: center;
+      text-align: right;
+
+      color: #ffffff;
+    }
+  }
+}
+
+.MIProfileHashTag {
+  position: absolute;
+  width: 200px;
+  height: 55px;
+  left: 60px;
+  top: 150px;
+
+  font-family: "Indie Flower";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 37.5px;
+  line-height: 55px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+
+  color: #ffffff;
+}
+
+.MIProfileSetting {
+  position: absolute;
+  width: 138.75px;
+  height: 50.25px;
+  left: 65px;
+  top: 230px;
+
+  border: 1.5px dashed #50a1a3;
+  background: #ffffff;
+  border-radius: 30px;
+  .MIProfileSettingIcon {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 15px;
+    top: 13px;
+    background: url(../../assets/images/plus.png);
+    background-size: 100% 100%;
+  }
+
+  .MIProfileSettingText {
+    position: absolute;
+    width: 100px;
+    height: 27px;
+    left: 27.5px;
+    top: 0px;
+
+    font-family: "Indie Flower";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18.75px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #50a1a3;
+  }
+}
+
+.MIProfileNameAge {
+  position: absolute;
+  width: 183px;
+  height: 56px;
+  left: 59px;
+  top: 700px;
+
+  .MIProfileName {
+    position: absolute;
+    width: 115px;
+    height: 55px;
+    left: 0px;
+    top: 0px;
+
+    font-family: "Indie Flower";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 37.5px;
+    line-height: 55px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #ffffff;
+  }
+  .MIProfileAge {
+    position: absolute;
+    width: 62px;
+    height: 55px;
+    left: 70%;
+    top: 0px;
+
+    font-family: "Indie Flower";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 37.5px;
+    line-height: 55px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: flex-end;
+    text-align: center;
+
+    color: #ffffff;
+  }
+}
+
+.MIProfileEditProfile {
+  position: absolute;
+  width: 211px;
+  height: 77px;
+  left: 1152.75px;
+  top: 690.5px;
+  position: absolute;
+  font-weight: 400;
+  font-size: 37.5px;
+  line-height: 55px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+
+  color: #ffffff;
+}
+
+.MIProfileIntroducing {
+  position: absolute;
+  width: 270px;
+  height: 191.5px;
+  left: 1094px;
+  top: 308.5px;
+
+  .MIProfileIntroducingTitle {
+    position: absolute;
+    width: 173px;
+    height: 55px;
+    left: 96.75px;
+    top: 0px;
+  }
+  .MIProfileIntroducingText {
+    position: absolute;
+    width: 270px;
+    height: 99px;
+    left: 0px;
+    top: 92.5px;
+  }
+}

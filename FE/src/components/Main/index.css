@@ -28,7 +28,7 @@
   font-weight: 400;
   font-size: 75.1331px;
   line-height: 91px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .SubFrame .SubLeftDiv .SubLeftDesc {
   /* SubLeftDesc */
@@ -44,7 +44,7 @@
   line-height: 36px;
   display: flex;
   align-items: center;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .SubFrame .SubLeftDiv .CommBoxFrame1 {
   position: absolute;
@@ -52,7 +52,7 @@
   height: 90.16px;
   left: 0px;
   top: 337.35px;
-  background: #50A1A3;
+  background: #50a1a3;
   box-shadow: 0px 3.00532px 3.00532px rgba(0, 0, 0, 0.25);
   border-radius: 15.0266px;
 }
@@ -68,7 +68,7 @@
   font-size: 41.3232px;
   line-height: 50px;
   /* identical to box height */
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .SubFrame .SubRightDiv {
   position: absolute;

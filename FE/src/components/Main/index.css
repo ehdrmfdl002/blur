@@ -1,1 +1,83 @@
-/*# sourceMappingURL=index.css.map */
+.SubFrame {
+  box-sizing: border-box;
+  position: absolute;
+  left: 65px;
+  right: 65px;
+  height: 534.81px;
+  left: 63.33px;
+  top: 147.78px;
+  background: rgba(255, 255, 255, 0.19);
+  border: 0.703704px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 2.81482px 2.81482px rgba(0, 0, 0, 0.25);
+  border-radius: 28.1482px;
+}
+.SubFrame .SubLeftDiv {
+  position: absolute;
+  width: 496.81px;
+  height: 400.41px;
+  left: 49.26px;
+  top: 73.89px;
+}
+.SubFrame .SubLeftDiv .SubLeftTitle {
+  position: absolute;
+  width: 346px;
+  height: 170px;
+  left: 0px;
+  top: 35.19px;
+  font-family: "Happy Monkey";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 70.3704px;
+  line-height: 85px;
+  color: #FFFFFF;
+}
+.SubFrame .SubLeftDiv .SubLeftDesc {
+  /* SubLeftDesc */
+  position: absolute;
+  width: 353px;
+  height: 34px;
+  left: 5.63px;
+  top: 208.63px;
+  font-family: "Happy Monkey";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28.1482px;
+  line-height: 34px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+}
+.SubFrame .SubLeftDiv .CommBoxFrame1 {
+  position: absolute;
+  width: 492.59px;
+  height: 84.44px;
+  left: 0px;
+  top: 315.96px;
+  background: #50A1A3;
+  box-shadow: 0px 2.81482px 2.81482px rgba(0, 0, 0, 0.25);
+  border-radius: 14.0741px;
+}
+.SubFrame .SubLeftDiv .CommBoxFrame1 .CommBoxFrameStart {
+  position: absolute;
+  width: 102px;
+  height: 47px;
+  left: 195.63px;
+  top: 19px;
+  font-family: "Happy Monkey";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 38.7037px;
+  line-height: 47px;
+  /* identical to box height */
+  color: #FFFFFF;
+}
+.SubFrame .SubRightDiv {
+  position: absolute;
+  right: 55px;
+  height: 400px;
+  left: 650px;
+  top: 110px;
+  background: rgba(250, 234, 234, 0.2);
+  border-radius: 28.1482px;
+}/*# sourceMappingURL=index.css.map */

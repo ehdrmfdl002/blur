@@ -4,6 +4,7 @@ import React from "react";
 import "./App.css";
 
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />}></Route>
+          <Route path="/Login" element={<Login/>}></Route>
         </Routes>
       </Router>
     </div>

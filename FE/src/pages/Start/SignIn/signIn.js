@@ -1,10 +1,10 @@
 import "./signIn.css";
 
-function SignIn() {
+function SignIn({ showSignUpModal, showSignInModal }) {
   return (
     <div className="SIModal">
-      <div>
-        <h3>Sign In</h3>
+      <div className="SIModalHeader">
+        <span className="SIModalHeaderText">Sign In</span>
       </div>
       <div>
         <form>
@@ -15,12 +15,19 @@ function SignIn() {
         </form>
         <button>로그인</button>
         <button>아이디 저장</button>
-        <button>회원가입</button>
+        <button
+          onClick={() => {
+            showSignInModal();
+            showSignUpModal();
+          }}
+        >
+          회원가입
+        </button>
         <button>비밀번호 찾기</button>
       </div>
       <div>
-        <button>카카오로 로그인</button>
-        <button>네이버로 로그인</button>
+        <button className="KakaoLoginBtn">카카오로 로그인</button>
+        <button className="NaverLoginBtn">네이버로 로그인</button>
       </div>
     </div>
   );

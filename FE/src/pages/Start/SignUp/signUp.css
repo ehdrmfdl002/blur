@@ -1,9 +1,10 @@
 .SUModal {
   position: absolute;
-  width: 604px;
-  height: 942px;
-  left: 658px;
-  top: 69px;
+  width: 460.5px;
+  height: 615px;
+  left: 490.5px;
+  top: 94.5px;
+  z-index: 30;
   background: #ffffff;
   border-radius: 40px;
 }/*# sourceMappingURL=signUp.css.map */

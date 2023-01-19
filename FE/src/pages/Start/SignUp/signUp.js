@@ -1,6 +1,6 @@
 import "./signUp.css";
 
-function SignUp() {
+function SignUp({ showSignUpModal, showSignInModal }) {
   return (
     <div className="SUModal">
       <div>
@@ -20,7 +20,14 @@ function SignUp() {
       </div>
       <div>
         <button>회원가입</button>
-        <button>취소</button>
+        <button
+          onClick={() => {
+            showSignUpModal();
+            showSignInModal();
+          }}
+        >
+          취소
+        </button>
       </div>
     </div>
   );

@@ -6,9 +6,9 @@ function Main() {
       <div className="SubLeftDiv">
         <span className="SubLeftTitle">Hey, Just Blur!</span>
         <span className="SubLeftDesc">Show me yot own color.</span>
-        <div className="CommBoxFrame1">
+        <button id="signInButton" className="CommBoxFrame1">
           <span className="CommBoxFrameStart"> Start</span>
-        </div>
+        </button>
       </div>
 
       <div className="SubRightDiv">

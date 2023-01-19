@@ -4,6 +4,7 @@ import "./index.css";
 import SignIn from "./SignIn/signIn";
 import SignInWrap from "./SignIn/signInWrap";
 import SignUp from "./SignUp/signUp";
+import SearchPw from "./SearchPw/searchPw";
 
 function Start() {
   const [signInModal, setSignInModal] = useState(false);
@@ -16,28 +17,41 @@ function Start() {
     setSignUpModal((pre) => !pre);
   };
 
+  const [searchPwModal, setSearchPwModal] = useState(false);
+  const showSearchPwModal = () => {
+    setSearchPwModal((pre) => !pre);
+  };
+
   return (
     <div className="Start">
-      {signInModal && !signUpModal ? (
-        <SignIn
-          showSignUpModal={showSignUpModal}
-          showSignInModal={showSignInModal}
-        />
-      ) : null}
-      {signInModal || signUpModal ? (
+      {signInModal || signUpModal || searchPwModal ? (
         <SignInWrap
           signInModal={signInModal}
           signUpModal={signUpModal}
+          searchPwModal={searchPwModal}
           showSignInModal={showSignInModal}
           showSignUpModal={showSignUpModal}
+          showSearchPwModal={showSearchPwModal}
         />
       ) : null}
-      {signUpModal && !signInModal ? (
+
+      {signInModal && !signUpModal && !searchPwModal ? (
+        <SignIn
+          showSignUpModal={showSignUpModal}
+          showSignInModal={showSignInModal}
+          showSearchPwModal={showSearchPwModal}
+        />
+      ) : null}
+
+      {signUpModal && !signInModal && !searchPwModal ? (
         <SignUp
           showSignUpModal={showSignUpModal}
           showSignInModal={showSignInModal}
         />
       ) : null}
+
+      {searchPwModal && !signInModal && !signUpModal ? <SearchPw /> : null}
+
       <Header />
       <div className="SubFrame">
         <div className="SubLeftDiv">

@@ -1,10 +1,14 @@
-import "./signInWrap.css";
+import "./modalWrap.css";
 
-function SignInWrap({
+function ModalWrap({
   showSignInModal,
   showSignUpModal,
+  showSearchPwModal,
+  showBlurInfoModal,
   signInModal,
   signUpModal,
+  searchPwModal,
+  blurInfoModal,
 }) {
   return (
     <div
@@ -14,12 +18,16 @@ function SignInWrap({
           showSignInModal();
         } else if (signUpModal === true) {
           showSignUpModal();
+        } else if (searchPwModal === true) {
+          showSearchPwModal();
+        } else if (blurInfoModal === true) {
+          showBlurInfoModal();
         }
       }}
     >
-      나와라
+      어두운배경
     </div>
   );
 }
 
-export default SignInWrap;
+export default ModalWrap;

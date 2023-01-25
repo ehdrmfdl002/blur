@@ -30,11 +30,14 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         OAuth2UserInfo oAuth2UserInfo = null;
         if(userRequest.getClientRegistration().getRegistrationId().equals("google")) {
             oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
-        }else if(userRequest.getClientRegistration().getRegistrationId().equals("naver")) {
+        }
+        else if(userRequest.getClientRegistration().getRegistrationId().equals("naver")) {
             oAuth2UserInfo = new NaverUserInfo(oAuth2User.getAttributes());
-        }else if(userRequest.getClientRegistration().getRegistrationId().equals("kakao")) {
+        }
+        else if(userRequest.getClientRegistration().getRegistrationId().equals("kakao")) {
             oAuth2UserInfo = new KakaoUserInfo(oAuth2User.getAttributes());
-        }else {
+        }
+        else {
             System.out.println("error");
         }
 

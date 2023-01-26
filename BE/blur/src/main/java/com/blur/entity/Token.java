@@ -21,12 +21,16 @@ import lombok.NoArgsConstructor;
 @Builder
 @Table(name = "token")
 public class Token {
-	 @JsonIgnore
-	    @Id
-	    @Column(name = "user_no")
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    Long userNo;
-	 
-	 @Column(name = "refresh_token", length = 255)
-	    String refreshToken;
+//	@JsonIgnore
+//	@Id
+//	@Column(name = "user_no")
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	Long userNo;
+	
+	@Id
+    @Column(name = "user_id", nullable = false, length = 255, unique = true)
+    private String userId;
+
+	@Column(name = "refresh_token", length = 255)
+	private String refreshToken;
 }

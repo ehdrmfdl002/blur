@@ -9,21 +9,16 @@ import lombok.*;
 @Builder
 @Setter
 public class TokenDto {
-	private Long userNo;
-	private String refreshToken;
+//	private Long userNo;
 	private String userId;
+	private String refreshToken;
 	
-	public Token toEntity() {
-		Token token = Token.builder()
-				.userNo(userNo)
-				.refreshToken(refreshToken)
-				.build();
-		return token;
-	}
+//	public Token toEntity() {
+//		Token token = Token.builder()
+//				.userId(userId)
+//				.refreshToken(refreshToken)
+//				.build();
+//		return token;
+//	}
 
-	public TokenDto(Long userNo, String refreshToken) {
-		super();
-		this.userNo = userNo;
-		this.refreshToken = refreshToken;
-	}
 }

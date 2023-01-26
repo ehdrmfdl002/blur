@@ -116,9 +116,9 @@ public class AuthController {
 	public ResponseEntity<?> refreshToken(@RequestBody TokenDto tokenDto) throws Exception {
 		Map<String, Object> resultMap = new HashMap<>();
 		HttpStatus status = HttpStatus.ACCEPTED;
-		logger.debug("token : {}, memberDto : {}", tokenDto.getRefreshToken(), tokenDto.getUserNo());
+		logger.debug("token : {}, memberDto : {}", tokenDto.getRefreshToken(), tokenDto.getUserId());
 		if (jwtservice.checkToken(tokenDto.getRefreshToken())) {
-			if (tokenDto.getRefreshToken().equals(tokenService.getRefreshToken(tokenDto.getUserNo()).getRefreshToken())) {
+			if (tokenDto.getRefreshToken().equals(tokenService.getRefreshToken(tokenDto.getUserId()))) {
 				String accessToken = jwtservice.createAccessToken("userId", tokenDto.getUserId());
 				logger.debug("token : {}", accessToken);
 				logger.debug("정상적으로 액세스토큰 재발급");

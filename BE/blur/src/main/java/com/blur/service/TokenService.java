@@ -20,14 +20,12 @@ public class TokenService{
 		tokenRepository.save(token);
 	}
 
-	public TokenDto getRefreshToken(Long userNo) throws Exception {
-		Token token = tokenRepository.findByUserNo(userNo);
-		TokenDto tokenDto = new TokenDto(token.getUserNo(), token.getRefreshToken());
-		return tokenDto;
+	public String getRefreshToken(String userId) throws Exception {
+		return tokenRepository.findByUserId(userId).getRefreshToken();
 	}
 
-	public void deleRefreshToken(Long userNo) throws Exception {
-		tokenRepository.deleteByuserNo(userNo);
+	public void deleRefreshToken(String userId) throws Exception {
+		tokenRepository.deleteByuserId(userId);
 	}
 	
 //	public User getUserId(Long userNo) throws Exception {

@@ -14,12 +14,12 @@ public class PrincipalDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    @Override
-    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-        User userEntity = userRepository.findByUserId(userId);
-        if(userEntity != null) {
-            return new PrincipalDetails(userEntity);
-        }
-        return null;
-    }
+//    @Override
+//    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+//        User userEntity = userRepository.findByUserId(userId);
+//        if(userEntity != null) {
+//            return new PrincipalDetails(userEntity);
+//        }
+//        return null;
+//    }
 }

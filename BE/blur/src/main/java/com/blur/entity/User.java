@@ -12,12 +12,13 @@ import javax.persistence.*;
 @Table(name = "user")
 public class User {
 
-    @JsonIgnore
-    @Id
-    @Column(name = "user_no")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long userNo;
+//    @JsonIgnore
+//    @Id
+//    @Column(name = "user_no")
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    Long userNo;
 
+	@Id
     @Column(name = "user_id", nullable = false, length = 255, unique = true)
     String userId;
 
@@ -30,5 +31,4 @@ public class User {
 
     @Column(name = "gender")
     Boolean gender;
-
 }

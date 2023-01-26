@@ -46,15 +46,15 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         String userId = provider+"_"+providerId;
         String email = oAuth2UserInfo.getEmail();
 
-        User userEntity = userRepository.findByUserId(userId);
-
-        if(userEntity==null) {
-            userEntity = User.builder()
-                    .userId(userId)
-                    .email(email)
-                    .build();
-            userRepository.save(userEntity);
-        }
-        return new PrincipalDetails(userEntity, oAuth2User.getAttributes());
+//        User userEntity = userRepository.findByUserId(userId);
+//
+//        if(userEntity==null) {
+//            userEntity = User.builder()
+//                    .userId(userId)
+//                    .email(email)
+//                    .build();
+//            userRepository.save(userEntity);
+//        }
+//        return new PrincipalDetails(userEntity, oAuth2User.getAttributes());
     }
 }

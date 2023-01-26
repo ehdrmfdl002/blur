@@ -1,16 +1,14 @@
 package com.blur.api.dto.response;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * 에러 메세지 관련
  */
-@Data
+@Getter
+@AllArgsConstructor
 public class ErrorResponse {
-
-    private String errorMessage;
-
-    public ErrorResponse(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
+	private final int errorCode;
+    private final String errorMessage;
 }

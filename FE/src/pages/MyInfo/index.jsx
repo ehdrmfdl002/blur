@@ -2,7 +2,7 @@ import "../../App.css";
 import "./index.css";
 import MyInfoModal from "./MyInfoModal/myInfoModal";
 import React, { useState } from "react";
-// import { changeNickName } from "../../store";
+import { changeNickName } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import Hash from "./Hash/Hash";
 import { useNavigate } from "react-router-dom";
@@ -31,14 +31,14 @@ function MyInfo() {
       {miModal ? <MyInfoModal showMyinfoModal={showMyinfoModal} /> : null}
       {/* {!miModal ? <MyInfoModal showMyinfoModal={showMyinfoModal} /> : null} * */}
       {hashModal == true ? <Hash style></Hash> : null}
-      <button
+      <div
         onClick={() => {
           navigate("/");
         }}
         className="MIbackbtn"
       >
         out
-      </button>
+      </div>
       <div className="MIImgDiv">
         <div className="MIImg"></div>
         <div className="MISetDiv">

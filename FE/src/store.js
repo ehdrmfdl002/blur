@@ -1,5 +1,5 @@
 // import { configureStore, createSlice } from "@reduxjs/toolkit";
-// import MyInfoModal from "./pages/MyInfo/MyInfoModal/myInfoModal";
+// import MyInfoModal from "./pages/MyInfo/MyInfoModal/myInfoModal"c;
 
 // const nickname = createSlice({
 //   name: "nickname",

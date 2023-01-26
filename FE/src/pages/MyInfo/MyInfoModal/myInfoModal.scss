@@ -65,9 +65,9 @@
 
       .leftModalProText {
         position: absolute;
-        width: 115px;
+        width: 125px;
         height: 27px;
-        left: 110px;
+        left: 105px;
         top: 15px;
 
         font-weight: 300px;
@@ -148,8 +148,8 @@
       position: absolute;
       width: 155px;
       height: 27px;
-      left: 0px;
-      top: 15px;
+      left: 30px;
+      top: 12px;
 
       font-weight: 400;
       font-size: 22.5556px;
@@ -491,7 +491,7 @@
             width: 340px;
             height: 55px;
             left: 225px;
-            top: 0px;
+            top: px;
 
             background: rgba(104, 187, 189, 0.2);
             // filter: blur(18.75px);
@@ -643,5 +643,20 @@
         }
       }
     }
-  }
+
 }
+
+
+
+
+// .Select.style {
+//   width: 120;
+//   height: 40;
+//   // chooseType: {(e: any) => setTimeData(e)};
+//   // isSearchable={false};
+//   // options={TimeData};
+//   // onFocus={onFocus};
+//   // isDisabled={disabled};
+//   // placeholder="00:00";
+//   // value={value ? { target: value, label: value } : null}
+// }

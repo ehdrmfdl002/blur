@@ -1,13 +1,87 @@
 import "../../../App.css";
 import "./myInfoModal.css";
 import React, { useState } from "react";
+import Select from "react-select";
+import { Range } from "rc-slider";
+import Slider from "react-styled-carousel";
+import "rc-slider/assets/index.css";
+// import ReactDOM from "react-dom";
 // import { useDispatch, useSelector } from "react-redux";
 // import { changeNickName } from "../../../store";
-// import Select from "react-select";
 // import "./MyInfo/index";
 
 function MyInfoModal() {
+  // const options = [
+  //   { value: "chocolate", label: "Chocolate" },
+  //   { value: "strawberry", label: "Strawberry" },
+  //   { value: "vanilla", label: "Vanilla" },
+  // ];
+
+  // const MyComponent = () => <Select options={options} />;
+
   const [settingModal, setsettingModal] = useState(false);
+
+  //profile 변경
+  const [nickName, setNickName] = useState("");
+  const [nickedit, setNickEdit] = useState(false);
+  const [email, setEmail] = useState("");
+  const [emailedit, setEmailEdit] = useState(false);
+
+  let nicNamecontent = (
+    <div>
+      {nickName} <button onClick={() => setNickEdit(true)}>수정</button>
+    </div>
+  );
+
+  if (nickedit) {
+    nicNamecontent = (
+      <div className="PMIdInput">
+        <input
+          type="text"
+          value={nickName}
+          onChange={(e) => {
+            setNickName(e.target.value);
+          }}
+        />
+        <button onClick={() => setNickEdit(false)}>수정완료</button>
+      </div>
+    );
+  }
+  //-----------
+  let emailContent = (
+    <div>
+      {email} <button onClick={() => setEmailEdit(true)}>수정</button>
+    </div>
+  );
+
+  if (emailedit) {
+    emailContent = (
+      <div className="PMIdInput">
+        <input
+          type="text"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
+        <button onClick={() => setEmailEdit(false)}>수정완료</button>
+      </div>
+    );
+  }
+  //------------------
+
+  const ExampleSlider = () => (
+    <Slider>
+      <h1>1</h1>
+      <h1>2</h1>
+      <h1>3</h1>
+      <h1>4</h1>
+    </Slider>
+  );
+
+  // const Slider = require("rc-slider");
+  // const createSliderWithTooltip = Slider.createSliderWithTooltip;
+  // const Range = createSliderWithTooltip(Slider.Range);
 
   // const [profileModal, setProfileModal] = useState(false);
 
@@ -31,21 +105,37 @@ function MyInfoModal() {
             <div className="ModalInputBox">
               <span className="SetMidPartnerLable">Partner Gender</span>
               <div className="SetMMPartnerCheckdiv">
-                <span className="SetMMPartnerCheck">Male</span>
+                <div className="flexbox">
+                  <div>Male</div>
+                  <div>Female</div>
+                  <div>None</div>
+                </div>
               </div>
             </div>
 
             <div className="ModalInputBox2">
               <span className="SetMidPartnerLable">Distance from partner</span>
               <div className="SetMMPartnerCheckdiv">
-                <input type="range" className="distancePartner"></input>
+                <input
+                  type="range"
+                  id="a"
+                  name="ages"
+                  min="10"
+                  max="60"
+                  step="10"
+                ></input>
               </div>
             </div>
 
             <div className="ModalInputBox3">
               <span className="SetMidPartnerLable">Partner's age group</span>
               <div className="SetMMPartnerCheckdiv">
-                <input type="range" className="SetMMPartnerCheck"></input>
+                <Range
+                  min={0}
+                  max={80}
+                  defaultValue={[0, 80]}
+                  // value={value}
+                ></Range>
               </div>
             </div>
           </div>
@@ -94,32 +184,68 @@ function MyInfoModal() {
         <span className="PMLabel">Profile Edit</span>
         <div className="PMIdDiv">
           <span className="PMIdLable">NickName</span>
-          <input
-            type="text"
-            // required
-            // value={nickName}
-            // onChange={(e) => setnickName(e.target.value)}
-            className="PMIdInput"
-          ></input>
+          <div className="PMIdInput">{nicNamecontent}</div>
         </div>
         <div className="PMAge">
           <span className="PMAgeLabel">Age</span>
-          {/* <Select className="PMAgeSelect"></Select> */}
+          <select className="PMAgeSelect">
+            <option> 알고리즘 작성 </option>
+            <option> ㅇㅈ </option>
+            <option> 20 </option>
+            <option> 55 </option>
+          </select>
         </div>
         <div className="PMMBTI">
           <span className="PMMBTILabel">MBTI</span>
-          <select className="PMMBTISelect"></select>
+          <select className="PMMBTISelect">
+            <option> 모름 </option>
+            <option> INTJ</option>
+            <option> INTP </option>
+            <option> ENTJ </option>
+            <option> ENTP</option>
+
+            <option> INFJ </option>
+            <option> INFP </option>
+            <option> ENFJ </option>
+            <option> ENFP </option>
+
+            <option> ISTJ</option>
+            <option> ISFJ</option>
+            <option> ESTJ</option>
+            <option> ESFJ </option>
+
+            <option> ISTP</option>
+            <option> ISFP </option>
+            <option> ESTP </option>
+            <option> ESFP </option>
+          </select>
         </div>
         <div className="PMMEmail">
           <span className="PMMEmailLabel">E-mail</span>
-          <input className="PMMEmailInput"></input>
+          <div className="PMMEmailInput">{emailContent}</div>
         </div>
 
         <div className="PMMGender">
           <span className="PMMGenderLable">Gender</span>
           <div className="PMMGenderdiv">
-            <div className="PMMGenderMale">Male</div>
-            <div className="PMMGenderFemale">Felmale</div>
+            <div className="PMMGenderMale">
+              <input
+                type="checkbox"
+                id="subscribeNews"
+                name="subscribe"
+                value="newsletter"
+              />
+              <label for="subscribeNews">Male</label>
+            </div>
+            <div className="PMMGenderFemale">
+              <input
+                type="checkbox"
+                id="subscribeNews"
+                name="subscribe"
+                value="newsletter"
+              />
+              <label for="subscribeNews">Femail</label>
+            </div>
           </div>
           <div className="PMIntroducing">
             <span className="PMIntroducingLabel">Introducing</span>
@@ -144,3 +270,4 @@ function MyInfoModal() {
 }
 
 export default MyInfoModal;
+// ReactDOM.render(<ExampleSlider />, document.getElementById("root"));

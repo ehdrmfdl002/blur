@@ -1,4 +1,4 @@
-package com.blur.api.dto.response;
+package com.blur.api.dto;
 
 import com.blur.entity.EmailAuth;
 import lombok.*;
@@ -8,11 +8,15 @@ import lombok.*;
 @Getter
 @Builder
 @Setter
-public class EmailAuthResponseDto {
+public class EmailAuthDto {
 
     private Long tempNo;
 
+    private String authKey;
+
+
     public EmailAuth toEntity(String authKey) {
+        this.authKey = authKey;
         EmailAuth emailAuth = EmailAuth.builder()
                 .authKey(authKey)
                 .build();

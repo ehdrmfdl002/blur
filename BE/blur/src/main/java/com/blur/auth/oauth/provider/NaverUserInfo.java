@@ -2,12 +2,12 @@ package com.blur.auth.oauth.provider;
 
 import java.util.Map;
 
-public class NaverUserInfo implements OAuth2UserInfo{
+public class NaverMemberInfo implements OAuth2MemberInfo{
 
     private Map<String, Object> attributes;
     private Map<String, Object> attributesResponse;
 
-    public NaverUserInfo(Map<String, Object> attributes) {
+    public NaverMemberInfo(Map<String, Object> attributes) {
         this.attributes = attributes;
         this.attributesResponse = (Map<String, Object>) attributes.get("response");
     }

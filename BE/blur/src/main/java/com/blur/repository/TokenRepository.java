@@ -1,9 +1,12 @@
 package com.blur.repository;
 
-import com.blur.entity.Token;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.blur.entity.Token;
+
 public interface TokenRepository extends JpaRepository<Token, String>{
-	Token findByUserId(String userId);
-	void deleteByuserId(String userId);
+	Optional<Token> findByMemberId(String memberId);
+	void deleteByMemberId(String memberId);
 }

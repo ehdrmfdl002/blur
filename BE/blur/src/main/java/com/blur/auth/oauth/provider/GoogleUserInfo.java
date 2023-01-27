@@ -2,11 +2,11 @@ package com.blur.auth.oauth.provider;
 
 import java.util.Map;
 
-public class GoogleUserInfo implements OAuth2UserInfo{
+public class GoogleMemberInfo implements OAuth2MemberInfo{
 
     private Map<String, Object> attributes;
 
-    public GoogleUserInfo(Map<String, Object> attributes) {
+    public GoogleMemberInfo(Map<String, Object> attributes) {
         this.attributes = attributes;
     }
 

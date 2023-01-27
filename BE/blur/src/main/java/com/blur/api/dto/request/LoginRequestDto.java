@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class LoginRequestDto {
-	private String userId;
+	private String MemberId;
 	private String password;
 	
 	public void encodePassword(String encodedPassword) {

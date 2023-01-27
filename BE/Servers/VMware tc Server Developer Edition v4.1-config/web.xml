@@ -333,7 +333,7 @@
     <!--                        that the entire header name must match the    -->
     <!--                        pattern.                                      -->
     <!--                        [ACCEPT[-0-9A-Z]*|CACHE-CONTROL|COOKIE|HOST|  -->
-    <!--                         IF-[-0-9A-Z]*|REFERER|USER-AGENT]            -->
+    <!--                         IF-[-0-9A-Z]*|REFERER|Member-AGENT]            -->
     <!--                                                                      -->
     <!--  environment-variable- An environment to be set for the execution    -->
     <!--                        environment of the CGI script. The name of    -->

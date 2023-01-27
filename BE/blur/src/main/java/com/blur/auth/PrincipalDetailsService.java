@@ -1,25 +1,27 @@
 package com.blur.auth;
 
-import com.blur.entity.User;
-import com.blur.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.blur.entity.Member;
+import com.blur.repository.MemberRepository;
+
 @Service
 public class PrincipalDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private MemberRepository MemberRepository;
 
-//    @Override
-//    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-//        User userEntity = userRepository.findByUserId(userId);
-//        if(userEntity != null) {
-//            return new PrincipalDetails(userEntity);
-//        }
-//        return null;
-//    }
+    @Override
+    public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
+        Member MemberEntity = MemberRepository.findByMemberId(memberId);
+        if(MemberEntity != null) {
+            return new PrincipalDetails(MemberEntity);
+        }
+        return null;
+    }
+
 }

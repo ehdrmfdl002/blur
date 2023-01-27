@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import com.blur.api.dto.TokenDto;
 import com.blur.entity.Token;
 import com.blur.repository.TokenRepository;
-import com.blur.repository.MemberRepository;
+import com.blur.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,11 +18,11 @@ public class TokenService{
 		tokenRepository.save(token);
 	}
 
-//	public String getRefreshToken(String memberId) throws Exception {
-//		return tokenRepository.findByMemberId(memberId).getRefreshToken();
+//	public String getRefreshToken(String userId) throws Exception {
+//		return tokenRepository.findByUserId(userId).getRefreshToken();
 //	}
 
-	public void deleRefreshToken(String memberId) throws Exception {
-		tokenRepository.deleteByMemberId(memberId);
+	public void deleRefreshToken(String userId) throws Exception {
+		tokenRepository.deleteByUserId(userId);
 	}
 	}

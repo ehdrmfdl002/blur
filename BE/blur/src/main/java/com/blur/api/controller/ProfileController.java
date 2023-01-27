@@ -1,6 +1,6 @@
 package com.blur.api.controller;
 
-import com.blur.api.dto.MemberProfileDto;
+import com.blur.api.dto.UserProfileDto;
 import com.blur.service.PasswordService;
 import com.blur.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +18,14 @@ public class ProfileController {
     ProfileService profileService;
 
     @GetMapping
-    public MemberProfileDto getProfile(@PathVariable("id") String memberId) {
-    	MemberProfileDto memberProfileDto = profileService.getProfile(memberId);
-        return memberProfileDto;
+    public UserProfileDto getProfile(@PathVariable("id") String userId) {
+    	UserProfileDto userProfileDto = profileService.getProfile(userId);
+        return userProfileDto;
     }
 
     @PutMapping("/updateProfile") //비밀번호 변경
-    public void updateProfile(@RequestBody MemberProfileDto memberProfileDto) throws Exception {
-        profileService.updateProfile(memberProfileDto);
+    public void updateProfile(@RequestBody UserProfileDto userProfileDto) throws Exception {
+        profileService.updateProfile(userProfileDto);
     }
 
     @PutMapping("/updatePassword") //비밀번호 변경

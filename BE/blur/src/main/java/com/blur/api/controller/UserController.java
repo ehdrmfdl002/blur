@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.blur.api.dto.MemberDto;
-import com.blur.entity.Member;
+import com.blur.api.dto.UserDto;
+import com.blur.entity.User;
 import com.blur.service.EmailService;
-import com.blur.service.MemberService;
+import com.blur.service.UserService;
 import com.blur.service.PasswordService;
 
 @Controller
@@ -20,7 +20,7 @@ import com.blur.service.PasswordService;
 public class UserController {
 
 	@Autowired
-	MemberService memberService;
+	UserService userService;
 
 	@Autowired
 	EmailService emailService;
@@ -34,17 +34,17 @@ public class UserController {
 	}
 
 	@PostMapping("/register")
-	public ResponseEntity<?> register(MemberDto memberDto) {
+	public ResponseEntity<?> register(UserDto userDto) {
 
-		Member res = memberService.register(memberDto);
+		User res = userService.register(userDto);
 		return ResponseEntity.ok(res);
 	}
 
 	@PostMapping("/checkId") // 아이디 중복체크
-	public void checkId(@RequestParam("userId") String memberId) {
+	public void checkId(@RequestParam("userId") String userId) {
 
-		memberService.checkId(memberId);
-		System.out.println(memberService.checkId(memberId));
+		userService.checkId(userId);
+		System.out.println(userService.checkId(userId));
 	}
 
 	@PostMapping("/sendAuthEmail") // 이메일 인증메일 발송

@@ -13,11 +13,11 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Table(name = "user_profile")
-public class MemberProfile {
+public class UserProfile {
 
     @Id
-    @Column(name = "member_id")
-    private String memberId;
+    @Column(name = "user_id")
+    private String userId;
 
     @Column(name = "birthyear")
     private Integer birthyear;
@@ -31,11 +31,11 @@ public class MemberProfile {
     @MapsId
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="user_id")
-    private Member member;
+    private User user;
 
-    public void setMember(Member member) {
-        this.member = member;
-        this.memberId = member.getMemberId();
+    public void setUser(User user) {
+        this.user = user;
+        this.userId = user.getUserId();
     }
 
     public void updateProfile(Integer birthyear, String nickname, String image) {

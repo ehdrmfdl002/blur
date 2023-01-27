@@ -22,8 +22,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "member")
-public class Member {
+@Table(name = "user")
+public class User {
 
 //    @JsonIgnore
 //    @Id
@@ -32,8 +32,8 @@ public class Member {
 //    Long userNo;
 
 	@Id
-    @Column(name = "member_id", nullable = false, length = 255, unique = true)
-    String memberId;
+    @Column(name = "user_id", nullable = false, length = 255, unique = true)
+    String userId;
 
     @Column(name = "email", length = 30)
     String email;
@@ -48,8 +48,8 @@ public class Member {
     @Column(name = "roles", length = 255)
     String roles;
     
-    @OneToOne(mappedBy = "member")
-    private MemberProfile memberProfile;
+    @OneToOne(mappedBy = "user")
+    private UserProfile userProfile;
 
     public void updateGender(Boolean gender) {
         this.gender = gender;
@@ -67,15 +67,15 @@ public class Member {
     }
     
     @Builder
-    public Member(String memberId, String password) {
-        this.memberId = memberId;
+    public User(String userId, String password) {
+        this.userId = userId;
         this.password = password;
         this.roles = "ROLE_USER";
     }
     
-    public static Member testCreate(String memberId, String password) {
-        return Member.builder()
-                .memberId(memberId)
+    public static User testCreate(String userId, String password) {
+        return User.builder()
+                .userId(userId)
                 .password(password)
                 .build();
     }

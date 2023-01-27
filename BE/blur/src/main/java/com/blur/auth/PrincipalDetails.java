@@ -7,24 +7,24 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
-import com.blur.entity.Member;
+import com.blur.entity.User;
 
 import lombok.Data;
 
 @Data
 public class PrincipalDetails implements UserDetails, OAuth2User {
 
-	private Member member;
+	private User user;
 	private Map<String, Object> attributes;
 
 	// 일반 로그인
-	public PrincipalDetails(Member member) {
-		this.member = member;
+	public PrincipalDetails(User user) {
+		this.user = user;
 	}
 
 	// 소셜 로그인
-	public PrincipalDetails(Member member, Map<String, Object> attributes) {
-		this.member = member;
+	public PrincipalDetails(User user, Map<String, Object> attributes) {
+		this.user = user;
 		this.attributes = attributes;
 	}
 
@@ -35,12 +35,12 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 
 	@Override
 	public String getPassword() {
-		return member.getPassword();
+		return user.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
-		return member.getMemberId();
+		return user.getUserId();
 	}
 
 	@Override

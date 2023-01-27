@@ -9,13 +9,13 @@ import lombok.*;
 @Builder
 @Setter
 public class TokenDto {
-//	private Long MemberNo;
-	private String MemberId;
+//	private Long UserNo;
+	private String UserId;
 	private String refreshToken;
 	
 //	public Token toEntity() {
 //		Token token = Token.builder()
-//				.MemberId(MemberId)
+//				.UserId(UserId)
 //				.refreshToken(refreshToken)
 //				.build();
 //		return token;

@@ -6,7 +6,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.blur.repository.MemberRepository;
+import com.blur.repository.UserRepository;
 import com.blur.service.JwtServiceImpl;
 
 import lombok.RequiredArgsConstructor;
@@ -21,16 +21,16 @@ public class AuthController {
 
 	private final JwtServiceImpl jwtservice;
 	private final AuthenticationManager authenticationManager;
-	private final MemberRepository MemberRepository;
+	private final UserRepository UserRepository;
 
 //	@PostMapping("/socialLogin")
 //	public ApiResponse socialLogin(@RequestBody LoginRequestDto loginRequestDto) {
 //		
 //		Authentication authentication = authenticationManager.authenticate(
-//			new MembernamePasswordAuthenticationToken(loginRequestDto.getMemberId(), loginRequestDto.getPassword())
+//			new UsernamePasswordAuthenticationToken(loginRequestDto.getUserId(), loginRequestDto.getPassword())
 //		);
 //				
-//		String MemberId = loginRequestDto.getMemberId();
+//		String UserId = loginRequestDto.getUserId();
 //		SecurityContextHolder.getContext().setAuthentication(authentication);
 //		
 //		Date now = new Date();
@@ -38,11 +38,11 @@ public class AuthController {
 //		System.out.println(loginRequestDto.toString());
 //		
 //		try {
-//			LoginRequestDto loginMember = memberservice.login(loginRequestDto);
-//			if (loginMember != null) {
-//				String accessToken = jwtservice.createAccessToken("Memberid", loginRequestDto.getMemberId());// key, data
-//				String refreshToken = jwtservice.createRefreshToken("Memberid", loginRequestDto.getMemberId());// key, data
-//				memberservice.saveRefreshToken(loginRequestDto.getMemberId(), refreshToken);
+//			LoginRequestDto loginUser = userservice.login(loginRequestDto);
+//			if (loginUser != null) {
+//				String accessToken = jwtservice.createAccessToken("Userid", loginRequestDto.getUserId());// key, data
+//				String refreshToken = jwtservice.createRefreshToken("Userid", loginRequestDto.getUserId());// key, data
+//				userservice.saveRefreshToken(loginRequestDto.getUserId(), refreshToken);
 //				logger.debug("로그인 accessToken 정보 : {}", accessToken);
 //				logger.debug("로그인 refreshToken 정보 : {}", refreshToken);
 //				resultMap.put("access-token", accessToken);
@@ -64,26 +64,26 @@ public class AuthController {
 	/**
 	 * 로그인 JWT 발급
 	 * 
-	 * @param MemberInfo {MemberId, password}
+	 * @param UserInfo {UserId, password}
 	 * @return
 	 */
 //	@PostMapping("/login")
 //	public ResponseEntity<?> login(@RequestBody LoginRequestDto loginRequestDto) {
 //		Map<String, Object> resultMap = new HashMap<>();
 //		HttpStatus status = null;
-//		Member Member = MemberRepository.findByMemberId(loginRequestDto.getMemberId());
-//		if (Member == null) {
+//		User User = UserRepository.findByUserId(loginRequestDto.getUserId());
+//		if (User == null) {
 //			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(
-//					messageSource.getMessage("error.none.Member", null, LocaleContextHolder.getLocale())));
+//					messageSource.getMessage("error.none.User", null, LocaleContextHolder.getLocale())));
 //		}
 //
-//		if (!passwordEncoder.matches(loginRequestDto.getPassword(), Member.getPassword())) {
+//		if (!passwordEncoder.matches(loginRequestDto.getPassword(), User.getPassword())) {
 //			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(
 //					messageSource.getMessage("error.wrong.password", null, LocaleContextHolder.getLocale())));
 //		}
 //		
-//		String accessToken = jwtservice.createAccessToken("MemberId", loginRequestDto.getMemberId());
-//		String refreshToken = jwtservice.createRefreshToken("MemberId", loginRequestDto.getMemberId());
+//		String accessToken = jwtservice.createAccessToken("UserId", loginRequestDto.getUserId());
+//		String refreshToken = jwtservice.createRefreshToken("UserId", loginRequestDto.getUserId());
 //		logger.debug("로그인 accessToken 정보 : {}", accessToken);
 //		logger.debug("로그인 refreshToken 정보 : {}", refreshToken);
 //		resultMap.put("access-token", accessToken);
@@ -98,10 +98,10 @@ public class AuthController {
 //	public ResponseEntity<?> refreshToken(@RequestBody TokenDto tokenDto) throws Exception {
 //		Map<String, Object> resultMap = new HashMap<>();
 //		HttpStatus status = HttpStatus.ACCEPTED;
-//		logger.debug("token : {}, memberDto : {}", tokenDto.getRefreshToken(), tokenDto.getMemberId());
+//		logger.debug("token : {}, userDto : {}", tokenDto.getRefreshToken(), tokenDto.getUserId());
 //		if (jwtservice.checkToken(tokenDto.getRefreshToken())) {
-//			if (tokenDto.getRefreshToken().equals(tokenService.getRefreshToken(tokenDto.getMemberId()))) {
-//				String accessToken = jwtservice.createAccessToken("MemberId", tokenDto.getMemberId());
+//			if (tokenDto.getRefreshToken().equals(tokenService.getRefreshToken(tokenDto.getUserId()))) {
+//				String accessToken = jwtservice.createAccessToken("UserId", tokenDto.getUserId());
 //				logger.debug("token : {}", accessToken);
 //				logger.debug("정상적으로 액세스토큰 재발급");
 //				resultMap.put("access-token", accessToken);

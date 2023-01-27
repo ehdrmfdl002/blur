@@ -1,10 +1,10 @@
 package com.blur.service;
 
-import com.blur.api.dto.MemberProfileDto;
-import com.blur.entity.Member;
-import com.blur.entity.MemberProfile;
-import com.blur.repository.MemberProfileRepository;
-import com.blur.repository.MemberRepository;
+import com.blur.api.dto.UserProfileDto;
+import com.blur.entity.User;
+import com.blur.entity.UserProfile;
+import com.blur.repository.UserProfileRepository;
+import com.blur.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,25 +14,25 @@ import org.springframework.stereotype.Service;
 public class ProfileService {
 
     @Autowired
-    MemberRepository memberRepository;
+    UserRepository userRepository;
 
     @Autowired
-    MemberProfileRepository memberProfileRepository;
+    UserProfileRepository userProfileRepository;
 
-    public MemberProfileDto getProfile(String memberId) {
-        Member Member = memberRepository.findByMemberId(memberId);
-        MemberProfile memberProfile = memberProfileRepository.findByMemberId(memberId);
-        MemberProfileDto memberProfileDto = new MemberProfileDto(Member, memberProfile);
-        return memberProfileDto;
+    public UserProfileDto getProfile(String userId) {
+        User User = userRepository.findByUserId(userId);
+        UserProfile userProfile = userProfileRepository.findByUserId(userId);
+        UserProfileDto userProfileDto = new UserProfileDto(User, userProfile);
+        return userProfileDto;
     }
 
-    public void updateProfile(MemberProfileDto memberProfileDto) {
-        Member member = memberRepository.findByMemberId(memberProfileDto.getMemberId());
-        MemberProfile memberProfile = memberProfileRepository.findByMemberId(memberProfileDto.getMemberId());
-        member.updateGender(memberProfileDto.getGender());
-        memberProfile.updateProfile(memberProfileDto.getBirthyear(), memberProfileDto.getNickname(), memberProfileDto.getImage());
-        memberRepository.save(member);
-        memberProfileRepository.save(memberProfile);
+    public void updateProfile(UserProfileDto userProfileDto) {
+        User user = userRepository.findByUserId(userProfileDto.getUserId());
+        UserProfile userProfile = userProfileRepository.findByUserId(userProfileDto.getUserId());
+        user.updateGender(userProfileDto.getGender());
+        userProfile.updateProfile(userProfileDto.getBirthyear(), userProfileDto.getNickname(), userProfileDto.getImage());
+        userRepository.save(user);
+        userProfileRepository.save(userProfile);
 
     }
 }

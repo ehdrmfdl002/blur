@@ -8,35 +8,35 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.blur.entity.Member;
-import com.blur.repository.MemberRepository;
+import com.blur.entity.User;
+import com.blur.repository.UserRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class MyMemberDetailsService implements UserDetailsService {
+public class MyUserDetailsService implements UserDetailsService {
 
-    private final MemberRepository memberRepository;
+    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Member member = memberRepository.findByMemberId(username)
+        User user = userRepository.findByUserId(username)
                 .orElseThrow(() -> new UsernameNotFoundException("userId : " + username + " was not found"));
 
-        return createUserDetails(member);
+        return createUserDetails(user);
     }
 
-    private UserDetails createUserDetails(Member member) {
+    private UserDetails createUserDetails(User user) {
         // 권한 관리 테이블로 만든 깃
         // -> https://github.com/szerhusenBC/jwt-spring-security-demo/blob/master/src/main/java/org/zerhusen/security/model/User.java
-        List<SimpleGrantedAuthority> grantedAuthorities = member.getRoleList().stream()
+        List<SimpleGrantedAuthority> grantedAuthorities = user.getRoleList().stream()
                 .map(authority -> new SimpleGrantedAuthority(authority))
                 .collect(Collectors.toList());
 
-        return new User(member.getMemberId(),
-                member.getPassword(),
+        return new User(user.getUserId(),
+                user.getPassword(),
                 grantedAuthorities);
     }
 }

@@ -115,7 +115,7 @@ public class JwtServiceImpl implements JwtService{
 			throw new UnAuthorizedException();
 //			개발환경
 //			Map<String,Object> testMap = new HashMap<>();
-//			testMap.put("Memberid", Memberid);
+//			testMap.put("Userid", Userid);
 //			return testMap;
 		}
 		Map<String, Object> value = claims.getBody();
@@ -124,8 +124,8 @@ public class JwtServiceImpl implements JwtService{
 	}
 
 	@Override
-	public String getMemberId() {
-		return (String) this.get("Member").get("MemberId");
+	public String getUserId() {
+		return (String) this.get("User").get("UserId");
 	}
 }
 

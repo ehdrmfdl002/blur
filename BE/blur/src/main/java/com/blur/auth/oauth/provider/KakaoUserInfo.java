@@ -2,12 +2,12 @@ package com.blur.auth.oauth.provider;
 
 import java.util.Map;
 
-public class KakaoMemberInfo implements OAuth2MemberInfo{
+public class KakaoUserInfo implements OAuth2UserInfo{
 
     private Map<String, Object> attributes;
     private Map<String, Object> attributesAccount;
 
-    public KakaoMemberInfo(Map<String, Object> attributes) {
+    public KakaoUserInfo(Map<String, Object> attributes) {
         this.attributes = attributes;
         this.attributesAccount = (Map<String, Object>) attributes.get("kakao_account");
     }

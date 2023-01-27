@@ -23,20 +23,20 @@ import lombok.NoArgsConstructor;
 public class Token {
 //	@JsonIgnore
 //	@Id
-//	@Column(name = "Member_no")
+//	@Column(name = "User_no")
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	Long MemberNo;
+//	Long UserNo;
 	
 	@Id
-    @Column(name = "member_id", nullable = false, length = 255, unique = true)
-    private String memberId;
+    @Column(name = "user_id", nullable = false, length = 255, unique = true)
+    private String userId;
 
 	@Column(name = "refresh_token", length = 255)
 	private String refreshToken;
 	
 
-    public static Token createToken(String memberId, String refreshToken){
-        return new Token(memberId, refreshToken);
+    public static Token createToken(String userId, String refreshToken){
+        return new Token(userId, refreshToken);
     }
 
     public void changeToken(String refreshToken) {

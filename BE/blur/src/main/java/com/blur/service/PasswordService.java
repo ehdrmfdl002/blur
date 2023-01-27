@@ -1,7 +1,7 @@
 package com.blur.service;
 
-import com.blur.entity.Member;
-import com.blur.repository.MemberRepository;
+import com.blur.entity.User;
+import com.blur.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ import java.util.Random;
 public class PasswordService {
 
     @Autowired
-    private final MemberRepository memberRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     JavaMailSender emailSender;
@@ -84,14 +84,14 @@ public class PasswordService {
         return message;
     }
 
-    public void sendTempPassword(String memberId)throws Exception {
-        Member member = memberRepository.findByMemberId(memberId);
-        String to = member.getEmail();
+    public void sendTempPassword(String userId)throws Exception {
+        User user = userRepository.findByUserId(userId);
+        String to = user.getEmail();
         MimeMessage message = createMessage(to);
         try{//예외처리
             emailSender.send(message);
-            member.updatePassword(encoder.encode(tPw));
-            memberRepository.save(member);
+            user.updatePassword(encoder.encode(tPw));
+            userRepository.save(user);
             System.out.println("임시비번 발급");
         }catch(MailException es){
             es.printStackTrace();
@@ -99,10 +99,10 @@ public class PasswordService {
         }
     }
 
-    public void updatePassword(String memberId, String newPassword)throws Exception {
-        Member member = memberRepository.findByMemberId(memberId);
-        member.updatePassword(encoder.encode(newPassword));
-        memberRepository.save(member);
+    public void updatePassword(String userId, String newPassword)throws Exception {
+        User user = userRepository.findByUserId(userId);
+        user.updatePassword(encoder.encode(newPassword));
+        userRepository.save(user);
         System.out.println("비밀번호 변경");
     }
 }

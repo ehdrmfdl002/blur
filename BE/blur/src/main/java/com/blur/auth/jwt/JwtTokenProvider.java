@@ -6,17 +6,17 @@ import java.util.Date;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.MembernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.Memberdetails.MemberDetails;
-import org.springframework.security.core.Memberdetails.MembernameNotFoundException;
+import org.springframework.security.core.Userdetails.UserDetails;
+import org.springframework.security.core.Userdetails.UsernameNotFoundException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.blur.auth.MyMemberDetailsService;
+import com.blur.auth.MyUserDetailsService;
 import com.blur.entity.Token;
 import com.blur.repository.TokenRepository;
 import com.nimbusds.oauth2.sdk.token.RefreshToken;
@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JwtTokenProvider implements InitializingBean {
 
-    private final MyMemberDetailsService myMemberDetailsService;
+    private final MyUserDetailsService myUserDetailsService;
     private final TokenRepository tokenRepository;
 
     private final String secretKey;
@@ -39,12 +39,12 @@ public class JwtTokenProvider implements InitializingBean {
     public JwtTokenProvider(@Value("${jwt.secret-key}") String secretKey,
                             @Value("${jwt.token-validity-in-sec}") long tokenValidity,
                             @Value("${jwt.refresh-token-validity-in-sec}") long refreshTokenValidity,
-                            MyMemberDetailsService myMemberDetailsService,
+                            MyUserDetailsService myUserDetailsService,
                             TokenRepository tokenRepository){
         this.secretKey = secretKey;
         this.tokenValidityInMs = tokenValidity * 1000;
         this.refreshTokenValidityInMs = refreshTokenValidity * 1000;
-        this.myMemberDetailsService = myMemberDetailsService;
+        this.myUserDetailsService = myUserDetailsService;
         this.tokenRepository = tokenRepository;
     }
 
@@ -76,7 +76,7 @@ public class JwtTokenProvider implements InitializingBean {
                 .parseClaimsJws(token)
                 .getBody();
 
-        UserDetails userDetails = myMemberDetailsService.loadUserByUsername(claims.getSubject());
+        UserDetails userDetails = myUserDetailsService.loadUserByUsername(claims.getSubject());
         return new UsernamePasswordAuthenticationToken(userDetails, token, userDetails.getAuthorities());
     }
 
@@ -97,8 +97,8 @@ public class JwtTokenProvider implements InitializingBean {
     public String reissueRefreshToken(String refreshToken) throws RuntimeException{
         // refresh token을 디비의 그것과 비교해보기
         Authentication authentication = getAuthentication(refreshToken);
-        Token findRefreshToken = tokenRepository.findByMemberId(authentication.getName())
-                .orElseThrow(() -> new UsernameNotFoundException("MemberId : " + authentication.getName() + " was not found"));
+        Token findRefreshToken = tokenRepository.findByUserId(authentication.getName())
+                .orElseThrow(() -> new UsernameNotFoundException("UserId : " + authentication.getName() + " was not found"));
 
         if(findRefreshToken.getRefreshToken().equals(refreshToken)){
             // 새로운거 생성
@@ -117,14 +117,14 @@ public class JwtTokenProvider implements InitializingBean {
         String newRefreshToken = createRefreshToken(authentication);
 
         // 기존것이 있다면 바꿔주고, 없다면 만들어줌
-        tokenRepository.findByMemberId(authentication.getName())
+        tokenRepository.findByUserId(authentication.getName())
                 .ifPresentOrElse(
                         r-> {r.changeToken(newRefreshToken);
         log.info("issueRefreshToken method | change token ");
                                             },
                         () -> {
                             RefreshToken token = RefreshToken.createToken(authentication.getName(), newRefreshToken);
-                            log.info(" issueRefreshToken method | save tokenID : {}, token : {}", token.getMemberId(), token.getToken());
+                            log.info(" issueRefreshToken method | save tokenID : {}, token : {}", token.getUserId(), token.getToken());
                             refreshTokenRepository.save(token);
                         });
 

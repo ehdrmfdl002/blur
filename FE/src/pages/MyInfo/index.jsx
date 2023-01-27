@@ -2,7 +2,7 @@ import "../../App.css";
 import "./index.css";
 import MyInfoModal from "./MyInfoModal/myInfoModal";
 import React, { useState } from "react";
-import { changeNickName } from "../../store";
+// import { changeName } from "../../../reducer/userEdit";
 import { useDispatch, useSelector } from "react-redux";
 import Hash from "./Hash/Hash";
 import { useNavigate } from "react-router-dom";
@@ -23,8 +23,9 @@ function MyInfo() {
 
   const navigate = useNavigate();
 
-  // const state = useSelector((state) => state);
-  // const dispatch = useDispatch();
+  // store에서 state 가져오는 거
+  const state = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   return (
     <div className="myinfo">
@@ -60,12 +61,12 @@ function MyInfo() {
         </div>
       </div>
       <div className="MINameAgeDiv">
-        {/* <span className="MIName">{state.nickname}</span> */}
-        <span className="MIAge">26</span>
+        <span className="MIName">{state?.user.name}</span>
+        <span className="MIAge">{state?.user.age}</span>
       </div>
-      <button className="MIEdit" onClick={showMyinfoModal}>
+      <div className="MIEdit" onClick={showMyinfoModal}>
         profile edit ->
-      </button>
+      </div>
       <div className="MIIntroducingDiv">
         <span className="MIIntroducingTitle">Introducing</span>
         <span className="MIIntroducingText">

@@ -6,19 +6,11 @@ import { Range } from "rc-slider";
 import Slider from "react-styled-carousel";
 import "rc-slider/assets/index.css";
 // import ReactDOM from "react-dom";
-// import { useDispatch, useSelector } from "react-redux";
-// import { changeNickName } from "../../../store";
-// import "./MyInfo/index";
+import { useDispatch, useSelector } from "react-redux";
+import { changeName } from "../../../reducer/userEdit";
+import "../index";
 
 function MyInfoModal() {
-  // const options = [
-  //   { value: "chocolate", label: "Chocolate" },
-  //   { value: "strawberry", label: "Strawberry" },
-  //   { value: "vanilla", label: "Vanilla" },
-  // ];
-
-  // const MyComponent = () => <Select options={options} />;
-
   const [settingModal, setsettingModal] = useState(false);
 
   //profile 변경
@@ -27,9 +19,17 @@ function MyInfoModal() {
   const [email, setEmail] = useState("");
   const [emailedit, setEmailEdit] = useState(false);
 
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
   let nicNamecontent = (
     <div>
-      {nickName} <button onClick={() => setNickEdit(true)}>수정</button>
+      <button
+        onClick={() => {
+          setNickEdit(true);
+        }}
+      >
+        수정
+      </button>
     </div>
   );
 
@@ -70,14 +70,14 @@ function MyInfoModal() {
   }
   //------------------
 
-  const ExampleSlider = () => (
-    <Slider>
-      <h1>1</h1>
-      <h1>2</h1>
-      <h1>3</h1>
-      <h1>4</h1>
-    </Slider>
-  );
+  // const ExampleSlider = () => (
+  //   <Slider>
+  //     <h1>1</h1>
+  //     <h1>2</h1>
+  //     <h1>3</h1>
+  //     <h1>4</h1>
+  //   </Slider>
+  // );
 
   // const Slider = require("rc-slider");
   // const createSliderWithTooltip = Slider.createSliderWithTooltip;
@@ -85,9 +85,6 @@ function MyInfoModal() {
 
   // const [profileModal, setProfileModal] = useState(false);
 
-  // const dispatch = useDispatch();
-
-  // const [nickName, setnickName] = useState("");
   // const state = useSelector((state) => state);
   // const [nickName, setnickName] = useSelector((state) => {
   //   return state.nickName;
@@ -142,11 +139,9 @@ function MyInfoModal() {
         </div>
         <button
           className="ModalOut"
-          // onMouseDown={() => {
-          //   if (setMyInfoModal === true) {
-          //     showMyinfoModal(false);
-          //   }
-          // }}
+          onClick={() => {
+            dispatch(changeName());
+          }}
         >
           <span className="ModalOutText">confirm</span>
         </button>
@@ -158,7 +153,7 @@ function MyInfoModal() {
       <div className="leftModal">
         <div className="leftModalImg"></div>
         <div className="leftModalNameDiv">
-          <span className="leftModalName"> welcome 김블리 </span>
+          <span className="leftModalName"> welcome {state.user} </span>
         </div>
         <div className="leftModalbtnDiv">
           <button

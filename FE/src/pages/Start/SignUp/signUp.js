@@ -1,6 +1,11 @@
 import "./signUp.css";
 
 function SignUp({ showSignUpModal, showSignInModal }) {
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log("막았다");
+  };
+
   return (
     <div className="SUModal">
       <div className="SUModalHeader">
@@ -16,6 +21,7 @@ function SignUp({ showSignUpModal, showSignInModal }) {
             id="user_id"
             placeholder="ID를 입력해 주세요"
           ></input>
+          <button onClick={(e) => e.preventDefault()}>아이디 중복체크</button>
         </div>
         <div className="SUModalInputPwDiv">
           <label className="SUModalInputPwLabel" htmlFor="user_pw">
@@ -46,9 +52,26 @@ function SignUp({ showSignUpModal, showSignInModal }) {
             id="user_email"
             placeholder="E-mail을 입력해 주세요"
           ></input>
+          <button onClick={(e) => e.preventDefault()}>
+            이메일로 인증번호 보내기
+          </button>
+        </div>
+        <div className="SUModalInputEmailConfirmDiv">
+          <label
+            className="SUModalInputEmailConfirmLabel"
+            htmlFor="user_email_confirm"
+          >
+            E-mail 인증번호
+          </label>
+          <input
+            className="SUModalInputEmailConfirm"
+            id="user_email_confirm"
+            placeholder="인증번호를 입력해 주세요"
+          ></input>
+          <button onClick={(e) => e.preventDefault()}>인증번호 확인</button>
         </div>
 
-        <button className="SUSignUpBtn">
+        <button className="SUSignUpBtn" onClick={onSubmit}>
           <span className="SUBtnText">회원가입</span>
         </button>
       </form>

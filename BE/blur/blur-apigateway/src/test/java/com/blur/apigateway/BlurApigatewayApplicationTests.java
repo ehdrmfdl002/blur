@@ -1,10 +1,10 @@
-package com.blur.business;
+package com.blur.apigateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BlurBusinessApplicationTests {
+class BlurApigatewayApplicationTests {
 
 	@Test
 	void contextLoads() {

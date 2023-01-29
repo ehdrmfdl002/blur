@@ -5,7 +5,7 @@ import java.util.Map;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Component;
 
-import com.blur.oauth.dto.UserDto;
+import com.blur.oauth.domain.user.dto.UserDto;
 
 @Component
 public class UserRequestMapper {
@@ -17,4 +17,5 @@ public class UserRequestMapper {
                 .picture((String)attributes.get("picture"))
                 .build();
     }
+    
 }

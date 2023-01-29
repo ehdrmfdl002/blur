@@ -15,8 +15,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 
-import com.blur.oauth.dto.UserDto;
-import com.blur.oauth.service.TokenService;
+import com.blur.oauth.domain.jwt.service.TokenService;
+import com.blur.oauth.domain.user.dto.UserDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -33,8 +33,8 @@ public class JwtAuthFilter extends GenericFilterBean {
 
             UserDto userDto = UserDto.builder()
                     .email(email)
-                    .name("이름이에용")
-                    .picture("프로필 이미지에요").build();
+                    .name("이름")
+                    .picture("프로필 이미지").build();
 
             Authentication auth = getAuthentication(userDto);
             SecurityContextHolder.getContext().setAuthentication(auth);

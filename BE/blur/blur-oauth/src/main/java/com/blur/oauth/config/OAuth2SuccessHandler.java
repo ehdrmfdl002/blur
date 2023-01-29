@@ -1,8 +1,8 @@
 package com.blur.oauth.config;
 
-import com.blur.oauth.dto.Token;
-import com.blur.oauth.dto.UserDto;
-import com.blur.oauth.service.TokenService;
+import com.blur.oauth.domain.jwt.redis.Token;
+import com.blur.oauth.domain.jwt.service.TokenService;
+import com.blur.oauth.domain.user.dto.UserDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -31,6 +31,8 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
         OAuth2User oAuth2User = (OAuth2User)authentication.getPrincipal();
         UserDto userDto = userRequestMapper.toDto(oAuth2User);
 
+        // 최초 로그인시 회원가입 처리
+        
         Token token = tokenService.generateToken(userDto.getEmail(), "USER");
         log.info("{}", token);
 

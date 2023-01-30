@@ -1,6 +1,56 @@
+import { useState } from "react";
 import "./signUp.css";
+import axios from "axios";
 
 function SignUp({ showSignUpModal, showSignInModal }) {
+  const API_URL = "";
+
+  const [id, setId] = useState(null);
+  const enterId = (e) => {
+    setId(e.target.value);
+    console.log(id);
+  };
+
+  const [ps1, setPs1] = useState(null);
+  const enterPs1 = (e) => {
+    setPs1(e.target.value);
+    console.log(ps1);
+  };
+
+  const [ps2, setPs2] = useState(null);
+  const enterPs2 = (e) => {
+    setPs2(e.target.value);
+    console.log(ps2);
+  };
+
+  const [email, setEmail] = useState(null);
+  const enterEmail = (e) => {
+    setEmail(e.target.value);
+    console.log(email);
+  };
+
+  const [idCheck, setIdCheck] = useState(false);
+  const callIdCheck = () => {
+    axios({
+      method: "post",
+      url: `${API_URL}/accounts/signup/`,
+      data: {
+        id: id,
+      },
+    })
+      .then((res) => {
+        setIdCheck(res.data);
+        console.log(idCheck);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const [psCheck, setPsCheck] = useState(false);
+
+  const [emailCheck, setEmailCheck] = useState(false);
+
   const onSubmit = (e) => {
     e.preventDefault();
     console.log("막았다");
@@ -20,8 +70,15 @@ function SignUp({ showSignUpModal, showSignInModal }) {
             className="SUModalInputId"
             id="user_id"
             placeholder="ID를 입력해 주세요"
+            onChange={enterId}
           ></input>
-          <button onClick={(e) => e.preventDefault()}>아이디 중복체크</button>
+          <button
+            onClick={(e) => {
+              e.preventDefault(), callIdCheck();
+            }}
+          >
+            아이디 중복체크
+          </button>
         </div>
         <div className="SUModalInputPwDiv">
           <label className="SUModalInputPwLabel" htmlFor="user_pw">
@@ -31,6 +88,7 @@ function SignUp({ showSignUpModal, showSignInModal }) {
             className="SUModalInputPw"
             id="user_pw"
             placeholder="PW를 입력해 주세요"
+            onChange={enterPs1}
           ></input>
         </div>
         <div className="SUModalInputPwChkDiv">
@@ -41,6 +99,7 @@ function SignUp({ showSignUpModal, showSignInModal }) {
             className="SUModalInputPwChk"
             id="user_pw_re"
             placeholder="PW를 다시 입력해 주세요"
+            onChange={enterPs2}
           ></input>
         </div>
         <div className="SUModalInputEmailDiv">
@@ -51,6 +110,7 @@ function SignUp({ showSignUpModal, showSignInModal }) {
             className="SUModalInputEmail"
             id="user_email"
             placeholder="E-mail을 입력해 주세요"
+            onChange={enterEmail}
           ></input>
           <button onClick={(e) => e.preventDefault()}>
             이메일로 인증번호 보내기

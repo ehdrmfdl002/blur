@@ -43,6 +43,59 @@
         border: 3px solid #68bbbd;
       }
     }
+
+    .interestdiv {
+      position: absolute;
+      width: 735px;
+      height: 370px;
+      left: 30px;
+      top: 100px;
+
+      .interestbox {
+        position: relative;
+        width: 185px;
+        height: 60px;
+        margin-top: 10px;
+        margin-left: auto;
+
+        .intBack {
+          position: absolute;
+          width: 185px;
+          height: 60px;
+          margin-top: auto;
+          margin-left: auto;
+
+          background: rgba(104, 187, 189, 0.2);
+          border-radius: 40px;
+
+          &active {
+            background-color: #68bbbd;
+          }
+          .intText {
+            position: absolute;
+            width: 180px;
+            height: 35px;
+            left: 0px;
+            top: 12px;
+            // margin-top: auto;
+            // margin-left: auto;
+            justify-content: center;
+            font-weight: 400;
+            font-size: 25px;
+            line-height: 36px;
+            display: flex;
+            align-items: center;
+
+            color: #b1b1b1;
+
+            &active {
+              color: black;
+            }
+          }
+        }
+      }
+    }
+
     .hashEdit {
       position: absolute;
       width: 300px;
@@ -69,3 +122,46 @@
     }
   }
 }
+
+// .interestdiv {
+//   position: absolute;
+//   width: 835px;
+//   height: 400px;
+//   left: 30px;
+//   top: 125px;
+
+//   .interestbox {
+//     position: absolute;
+//     width: 185px;
+//     height: 70px;
+//     margin-top: auto;
+//     margin-left: auto;
+//     .intBack {
+//       position: absolute;
+//       width: 185px;
+//       height: 70px;
+//       margin-top: auto;
+//       margin-left: auto;
+
+//       background: rgba(104, 187, 189, 0.2);
+//       border-radius: 40px;
+//       .intText {
+//         position: absolute;
+//         width: 45px;
+//         height: 35px;
+//         // left: 70px;
+//         // top: 16px;
+//         margin-top: auto;
+//         margin-left: auto;
+
+//         font-weight: 400;
+//         font-size: 25px;
+//         line-height: 36px;
+//         display: flex;
+//         align-items: center;
+
+//         color: #b1b1b1;
+//       }
+//     }
+//   }
+// }

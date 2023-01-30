@@ -3,38 +3,47 @@ import "./index.css";
 import MyInfoModal from "./MyInfoModal/myInfoModal";
 import React, { useState } from "react";
 // import { changeName } from "../../../reducer/userEdit";
+import { changeName } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import Hash from "./Hash/Hash";
 import { useNavigate } from "react-router-dom";
+import user from "../../reducer/userEdit";
 
-// import { modalSlice } from "./modalSlice";
-// const btnStyle = {
-//   color: "transparent",
-//   background: "transparent",
-//   border: "none",
-// };
-
-function MyInfo() {
+function MyInfo({ nickName }) {
+  //profile edit modal
   const [miModal, setMyInfoModal] = useState(false);
   const showMyinfoModal = () => {
     setMyInfoModal((pre) => !pre);
   };
-  const [hashModal, sethashModal] = useState(false);
 
+  //hash modal
+  const [hashModal, setHashModal] = useState(false);
+  const showHashModal = () => {
+    setHashModal((pre) => !pre);
+  };
+
+  // 페이지 이동
   const navigate = useNavigate();
 
   // store에서 state 가져오는 거
-  const state = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+  // const state = useSelector((state) => {
+  //   return state.userEdit.user;
+  // });
+  // console.log(state);
+  const member = useSelector((state) => state.userEdit);
+  // const mypage = useSelector((state) => state.mypage);
+  // const { memberNickname, memberRepIcon, memberId } = member;
+  // const { memberCurrentStrick, memberTotalTime } = mypage;
 
   return (
     <div className="myinfo">
       {miModal ? <MyInfoModal showMyinfoModal={showMyinfoModal} /> : null}
-      {/* {!miModal ? <MyInfoModal showMyinfoModal={showMyinfoModal} /> : null} * */}
-      {hashModal == true ? <Hash style></Hash> : null}
+
+      {hashModal ? <Hash showHashModal={showHashModal} /> : null}
+
       <div
         onClick={() => {
-          navigate("/");
+          navigate("/home");
         }}
         className="MIbackbtn"
       >
@@ -43,26 +52,21 @@ function MyInfo() {
       <div className="MIImgDiv">
         <div className="MIImg"></div>
         <div className="MISetDiv">
-          <div className="MISetting">
+          {/* <div className="MISetting">
             <div className="MIImgAddIcon"></div>
             <span className="MIImgAddText">사진 설정</span>
-          </div>
+          </div> */}
         </div>
       </div>
       <span className="MIHashTag">Hash Tag</span>
-      <div
-        className="MIHashSet"
-        onClick={() => {
-          sethashModal(true);
-        }}
-      >
+      <div className="MIHashSet" onClick={showHashModal}>
         <div className="MIHashSetIcon">
           <span className="MIHashSetText">설정하기</span>
         </div>
       </div>
       <div className="MINameAgeDiv">
-        <span className="MIName">{state?.user.name}</span>
-        <span className="MIAge">{state?.user.age}</span>
+        <span className="MIName">{user}</span>
+        {/* <span className="MIAge">{state?.user}</span> */}
       </div>
       <div className="MIEdit" onClick={showMyinfoModal}>
         profile edit ->

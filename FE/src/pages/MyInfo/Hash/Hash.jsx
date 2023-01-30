@@ -1,21 +1,44 @@
 import "../../../App.css";
 import "./Hash.css";
 import React, { useState } from "react";
-// import MyInfo from "./MyInfo/index";
 
-function Hash() {
-  const [hashModal, sethashModal] = useState(false);
+function Hash({ showHashModal }) {
+  const data = [1, 2, 3, 4, 5];
+
+  let [btnActive, setBtnActive] = useState(false);
+
+  const toggleActive = (e) => {
+    setBtnActive((prev) => {
+      return e.target.vlaue;
+    });
+  };
 
   return (
     <div className="Hash">
-      {hashModal == true ? <Hash style></Hash> : null}
       <div className="hashdiv">
         <div className="hashSerchDiv">
           <input type="text" className="hashinput" />
           <div className="hashVec" />
         </div>
 
-        <button className="hashEdit" onClick={() => {}}>
+        <div className="interestdiv">
+          {data.map((item, idx) => {
+            return (
+              <div className="interestbox">
+                <div
+                  className={"intBack" + (idx == btnActive ? "active" : "")}
+                  onClick={toggleActive}
+                >
+                  <span className={"intText" + (btnActive ? "active" : "")}>
+                    gd
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <button className="hashEdit" onClick={showHashModal}>
           <span className="hashEditText">선호 정보 수정</span>
         </button>
       </div>

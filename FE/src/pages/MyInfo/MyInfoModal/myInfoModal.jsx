@@ -1,176 +1,181 @@
 import "../../../App.css";
 import "./myInfoModal.css";
-import React, { useState } from "react";
-import Select from "react-select";
+
+import React, { useState, useRef, useEffect } from "react";
 import { Range } from "rc-slider";
-import Slider from "react-styled-carousel";
 import "rc-slider/assets/index.css";
-// import ReactDOM from "react-dom";
+import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { changeName } from "../../../reducer/userEdit";
-import "../index";
+import "../../../reducer/userEdit";
+import SetModal from "./SetModal/setmodal";
+// import "../index";
 
-function MyInfoModal() {
-  const [settingModal, setsettingModal] = useState(false);
+function MyInfoModal({ showMyinfoModal }) {
+  //setmodal
+  const [setModal, setSettingmodal] = useState(false);
+  const showSettingModal = () => {
+    setSettingmodal((pre) => !pre);
+  };
 
   //profile 변경
   const [nickName, setNickName] = useState("");
   const [nickedit, setNickEdit] = useState(false);
   const [email, setEmail] = useState("");
   const [emailedit, setEmailEdit] = useState(false);
+  const [introducing, setIntroducing] = useState("");
 
-  const state = useSelector((state) => state);
-  const dispatch = useDispatch();
+  // const user = useSelector((state) => state.member);
+  // const { memberId, memberRepIcon, memberNickname } = member;
+
+  // useEffect(() => {
+  //   if (memberNickname && memberRepIcon) {
+  //     setNickName(memberNickname);
+  //   }
+  // }, [member]);
+
+  // 이미지 업로드
+  const newForm = document.createElement("form");
+
+  const fileUpload = document.createElement("input");
+  fileUpload.setAttribute("type", "file");
+  fileUpload.setAttribute("id", "file");
+  fileUpload.setAttribute("accept", "image/*");
+
+  newForm.append(fileUpload);
+
+  const [Image, setImage] = useState();
+  const [File, setFile] = useState();
+
+  const fileInput = useRef(null);
+
+  const onChange = (e) => {
+    if (e.target.files[0]) {
+      setFile(e.target.files[0]);
+    } else {
+      //업로드 취소할 시
+      setImage(
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+      );
+      return;
+    }
+    //화면에 프로필 사진 표시
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setImage(reader.result);
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
+  // 데이터 가져오는 거
+  const dispatch = useDispatch({});
+  const { user } = useSelector((state) => state.userEdit);
+  // console.log(user);
+
+  const change = () => {
+    // store에 있는 state 바꾸는 함수 실행
+    dispatch(changeName());
+  };
+
+  // 가져온 데이터 값 변경
+  const UserEdit = () => {
+    return (
+      <div>
+        {user}
+        <button onChange={user}></button>
+      </div>
+    );
+  };
+
+  // 엔터 누르는거
+  const handleOnKeyPress = (e) => {
+    if (e.key === "Enter") {
+      setNickEdit(true); // Enter 입력이 되면 클릭 이벤트 실행
+    }
+  };
+
+  //nicName
   let nicNamecontent = (
     <div>
-      <button
-        onClick={() => {
-          setNickEdit(true);
-        }}
-      >
-        수정
-      </button>
+      <button onClick={() => setNickEdit(true)}>수정</button>
     </div>
   );
 
   if (nickedit) {
     nicNamecontent = (
-      <div className="PMIdInput">
+      <div>
         <input
+          className="PMIdInput"
           type="text"
           value={nickName}
           onChange={(e) => {
             setNickName(e.target.value);
           }}
+          onKeyPress={handleOnKeyPress}
         />
         <button onClick={() => setNickEdit(false)}>수정완료</button>
       </div>
     );
   }
-  //-----------
+
+  //e-mail
   let emailContent = (
     <div>
-      {email} <button onClick={() => setEmailEdit(true)}>수정</button>
+      <button onClick={() => setEmailEdit(true)}>수정</button>
     </div>
   );
 
   if (emailedit) {
     emailContent = (
-      <div className="PMIdInput">
+      <div>
         <input
+          className="PMIdInput"
           type="text"
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
           }}
+          onKeyPress={handleOnKeyPress}
         />
         <button onClick={() => setEmailEdit(false)}>수정완료</button>
       </div>
     );
   }
-  //------------------
 
-  // const ExampleSlider = () => (
-  //   <Slider>
-  //     <h1>1</h1>
-  //     <h1>2</h1>
-  //     <h1>3</h1>
-  //     <h1>4</h1>
-  //   </Slider>
-  // );
+  const age = (19, 70);
 
-  // const Slider = require("rc-slider");
-  // const createSliderWithTooltip = Slider.createSliderWithTooltip;
-  // const Range = createSliderWithTooltip(Slider.Range);
+  const ages = new Array(50).fill({ age });
 
-  // const [profileModal, setProfileModal] = useState(false);
-
-  // const state = useSelector((state) => state);
-  // const [nickName, setnickName] = useSelector((state) => {
-  //   return state.nickName;
-  // });
-  // const nickNameHansdler = () => {
-  //   setnickName(e.target.value);
-  // };
-
-  function SetModal() {
-    return (
-      <div className="SettingModal">
-        <div className="SetModal">
-          <span className="SEtLabel">Setting</span>
-          <div className="SEtMidModalChangediv">
-            <div className="ModalInputBox">
-              <span className="SetMidPartnerLable">Partner Gender</span>
-              <div className="SetMMPartnerCheckdiv">
-                <div className="flexbox">
-                  <div>Male</div>
-                  <div>Female</div>
-                  <div>None</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="ModalInputBox2">
-              <span className="SetMidPartnerLable">Distance from partner</span>
-              <div className="SetMMPartnerCheckdiv">
-                <input
-                  type="range"
-                  id="a"
-                  name="ages"
-                  min="10"
-                  max="60"
-                  step="10"
-                ></input>
-              </div>
-            </div>
-
-            <div className="ModalInputBox3">
-              <span className="SetMidPartnerLable">Partner's age group</span>
-              <div className="SetMMPartnerCheckdiv">
-                <Range
-                  min={0}
-                  max={80}
-                  defaultValue={[0, 80]}
-                  // value={value}
-                ></Range>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button
-          className="ModalOut"
-          onClick={() => {
-            dispatch(changeName());
-          }}
-        >
-          <span className="ModalOutText">confirm</span>
-        </button>
-      </div>
-    );
-  }
   return (
     <div className="Modal">
+      {setModal ? <SetModal showSettingModal={showSettingModal} /> : null}
       <div className="leftModal">
-        <div className="leftModalImg"></div>
+        <input
+          className="leftModalImg"
+          type="file"
+          // style={{ display: "none" }}
+          id="file"
+          accept="image/*"
+          // onChange={onChange}
+          // ref={fileInput}
+        ></input>
+
         <div className="leftModalNameDiv">
-          <span className="leftModalName"> welcome {state.user} </span>
+          <h1 className="leftModalName"> welcome {user[0]} </h1>
         </div>
         <div className="leftModalbtnDiv">
           <button
             className="leftModalEditbtn"
             onClick={() => {
-              setsettingModal(false);
+              setSettingmodal(false);
             }}
           >
-            <spna className="leftModalProText"> Profile Edit</spna>
+            <span className="leftModalProText"> Profile Edit</span>
           </button>
-          <button
-            className="leftModalSetbtn"
-            onClick={() => {
-              setsettingModal(true);
-            }}
-          >
-            <spna className="leftModalSetText"> Setting</spna>
+          <button className="leftModalSetbtn" onClick={showSettingModal}>
+            <span className="leftModalSetText"> Setting</span>
           </button>
         </div>
       </div>
@@ -178,16 +183,24 @@ function MyInfoModal() {
       <div className="ProfileModal">
         <span className="PMLabel">Profile Edit</span>
         <div className="PMIdDiv">
-          <span className="PMIdLable">NickName</span>
-          <div className="PMIdInput">{nicNamecontent}</div>
+          {/* <span className="PMIdLable">NickName {nicNamecontent}</span> */}
+          <span className="PMIdLable">NickName </span>
+          {/* <div className="PMIdInput"> {nickName}</div> */}
+          <input
+            type="text"
+            className="PMIdInput"
+            value={nickName}
+            onChange={(event) => {
+              setNickName(event.target.value);
+            }}
+          />
         </div>
         <div className="PMAge">
           <span className="PMAgeLabel">Age</span>
           <select className="PMAgeSelect">
-            <option> 알고리즘 작성 </option>
-            <option> ㅇㅈ </option>
-            <option> 20 </option>
-            <option> 55 </option>
+            {ages.map(() => {
+              return <option> {age}</option>;
+            })}
           </select>
         </div>
         <div className="PMMBTI">
@@ -216,50 +229,48 @@ function MyInfoModal() {
           </select>
         </div>
         <div className="PMMEmail">
-          <span className="PMMEmailLabel">E-mail</span>
-          <div className="PMMEmailInput">{emailContent}</div>
+          <span className="PMMEmailLabel">E-mail </span>
+          {/* <div className="PMMEmailInput">
+            <div className="PMMEmailInput">{email}</div>
+          </div> */}
+          <input
+            type="text"
+            className="PMMEmailInput"
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+          />
         </div>
 
         <div className="PMMGender">
           <span className="PMMGenderLable">Gender</span>
           <div className="PMMGenderdiv">
             <div className="PMMGenderMale">
-              <input
-                type="checkbox"
-                id="subscribeNews"
-                name="subscribe"
-                value="newsletter"
-              />
-              <label for="subscribeNews">Male</label>
+              <span className="PMMGenderMaleText"> Male</span>
             </div>
             <div className="PMMGenderFemale">
-              <input
-                type="checkbox"
-                id="subscribeNews"
-                name="subscribe"
-                value="newsletter"
-              />
-              <label for="subscribeNews">Femail</label>
+              <span className="PMMGenderFeMaleText"> FeMale</span>
             </div>
           </div>
           <div className="PMIntroducing">
             <span className="PMIntroducingLabel">Introducing</span>
-            <input className="PMIntroducingInput"></input>
+            {/* <input type="text" className="PMIntroducingInput"></input> */}
+            <input
+              type="text"
+              className="PMIntroducingInput"
+              value={introducing}
+              onChange={(event) => {
+                setIntroducing(event.target.value);
+              }}
+            />
           </div>
         </div>
       </div>
-      <button
-        className="ModalOut"
-        // onMouseDown={() => {
-        //   if (setMyInfoModal === true) {
-        //     showMyinfoModal(false);
-        //   }
-        // }}
-      >
+      <button className="ModalOut" onClick={showMyinfoModal}>
+        {/* <button className="ModalOut" onClick={UserEdit}> */}
         <span className="ModalOutText">confirm</span>
       </button>
-      {settingModal == true ? <SetModal style></SetModal> : null}
-      {/* {profileModal == true ? <setProfileModal style></setProfileModal> : null} */}
     </div>
   );
 }

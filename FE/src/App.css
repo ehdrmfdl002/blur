@@ -36,3 +36,7 @@ a:visited {
   left: 200px;
   top: 300px;
 }
+
+button {
+  border: none;
+}

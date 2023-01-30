@@ -1,49 +1,59 @@
 package com.blur.userservice.domain.user.entity;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import com.blur.userservice.global.entity.BaseEntity;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import javax.persistence.*;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "DTYPE")
 @Getter @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class User extends BaseEntity {
+public class User extends BaseEntity {
 
     @Id @GeneratedValue
-    @Column(name = "user_id")
-    private Long id;
+    @Column(name = "user_no")
+    private Integer userNo;
 
+    private String userId; 
+    
     private String email;
 
     private String password;
+    
+    private String gender;
+    
+//    private String gender;
 
-    private Boolean gender;
+//    private String name;
+//
+//    private String phoneNumber;
 
-    @Column(insertable = false,updatable = false)
-    protected String dtype;
+//    @Column(insertable = false,updatable = false)
+//    protected String dtype;
     
     @Enumerated(EnumType.STRING)
     private AuthType oauthType;
 
-	public User(Long id, String email, String password, Boolean gender, AuthType oauthType) {
-		this.dtype = User.class.getSimpleName();
-		this.oauthType = oauthType;
-	}
+    public User(String loginId, String email, String password, AuthType oauthType) {
+        this.email = email;
+        this.password = new BCryptPasswordEncoder().encode(password);
+        this.oauthType = oauthType;
+    }
 
-	
-
-//    public User(String email, String password, String name, String phoneNumber) {
-//        this.email = email;
-//        this.password = new BCryptPasswordEncoder().encode(password);
-//        this.name = name;
-//        this.phoneNumber = phoneNumber;
-//    }
-    
-    
 }

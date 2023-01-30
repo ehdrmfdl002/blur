@@ -74,7 +74,7 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
         Date expiredTime = jwtTokenProvider.getExpiredTime(accessToken);
         String refreshToken = jwtTokenProvider.createJwtRefreshToken();
 
-        refreshTokenServiceImpl.updateRefreshToken(Long.valueOf(userId), jwtTokenProvider.getRefreshTokenId(refreshToken));
+        refreshTokenServiceImpl.updateRefreshToken(Integer.valueOf(userId), jwtTokenProvider.getRefreshTokenId(refreshToken));
 
         // 쿠키 설정
         ResponseCookie refreshTokenCookie = cookieProvider.createRefreshTokenCookie(refreshToken);

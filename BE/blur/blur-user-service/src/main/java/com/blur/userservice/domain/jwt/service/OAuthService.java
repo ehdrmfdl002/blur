@@ -1,13 +1,18 @@
 package com.blur.userservice.domain.jwt.service;
 
-import com.blur.userservice.domain.user.dto.OAuthAttributeDto;
-import com.blur.userservice.domain.user.entity.Customer;
-import com.blur.userservice.domain.user.repository.CustomerRepository;
-import com.blur.userservice.domain.user.service.UserServiceImpl;
-import com.blur.userservice.global.utils.CookieProvider;
-import com.blur.userservice.global.utils.JwtTokenProvider;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Date;
+import java.util.stream.Collectors;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.http.ResponseCookie;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,24 +25,23 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Date;
-import java.util.stream.Collectors;
+import com.blur.userservice.domain.user.dto.OAuthAttributeDto;
+import com.blur.userservice.domain.user.entity.User;
+import com.blur.userservice.domain.user.repository.UserRepository;
+import com.blur.userservice.domain.user.service.UserServiceImpl;
+import com.blur.userservice.global.utils.CookieProvider;
+import com.blur.userservice.global.utils.JwtTokenProvider;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
 @Service
 public class OAuthService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
-    private final CustomerRepository customerRepository;
+//    private final CustomerRepository customerRepository;
+	private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final RefreshTokenService refreshTokenService;
     private final UserServiceImpl userServiceImpl;
@@ -59,11 +63,13 @@ public class OAuthService implements OAuth2UserService<OAuth2UserRequest, OAuth2
         // OAuth2UserService
         OAuthAttributeDto attributeDto = OAuthAttributeDto.of(registrationId, userNameAttributeName,oAuth2User.getAttributes());
 
-        Customer customer = saveCustomer(attributeDto);
+//        Customer customer = saveCustomer(attributeDto);
+        User user = saveUser(attributeDto);
 
-        String userEmail = customer.getEmail();
+//        String userEmail = user.getEmail();
+        String userId = user.getUserId();
 
-        Collection<? extends GrantedAuthority> authorities = userServiceImpl.loadUserByUsername(userEmail).getAuthorities();
+        Collection<? extends GrantedAuthority> authorities = userServiceImpl.loadUserByUsername(userId).getAuthorities();
 
         return new DefaultOAuth2User(
                 authorities
@@ -78,8 +84,9 @@ public class OAuthService implements OAuth2UserService<OAuth2UserRequest, OAuth2
 
 
         String refreshToken = jwtTokenProvider.createJwtRefreshToken();
-        Long customerId = customerRepository.findByEmail(userEmail).get().getId();
-        refreshTokenService.updateRefreshToken(customerId, jwtTokenProvider.getRefreshTokenId(refreshToken));
+//        Long customerId = customerRepository.findByEmail(userEmail).get().getId();
+        Integer userNo = userRepository.findByEmail(userEmail).get().getUserNo();
+        refreshTokenService.updateRefreshToken(userNo, jwtTokenProvider.getRefreshTokenId(refreshToken));
 
         // 쿠키 설정
         ResponseCookie refreshTokenCookie = cookieProvider.createRefreshTokenCookie(refreshToken);
@@ -90,7 +97,7 @@ public class OAuthService implements OAuth2UserService<OAuth2UserRequest, OAuth2
         response.addCookie(cookie);
 
         // body 설정
-        String accessToken = jwtTokenProvider.createJwtAccessToken(String.valueOf(customerId), request.getRequestURI(), authentication.getAuthorities().stream()
+        String accessToken = jwtTokenProvider.createJwtAccessToken(String.valueOf(userNo), request.getRequestURI(), authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList()));
         Date expiredTime = jwtTokenProvider.getExpiredTime(accessToken);
@@ -103,9 +110,9 @@ public class OAuthService implements OAuth2UserService<OAuth2UserRequest, OAuth2
 
 
     @Transactional
-    public Customer saveCustomer(OAuthAttributeDto attributeDto){
-        return customerRepository.save(
-                customerRepository.findByEmail(attributeDto.getEmail())
+    public User saveUser(OAuthAttributeDto attributeDto){
+        return userRepository.save(
+        		userRepository.findByUserId(attributeDto.getUserId())
                         .orElse(attributeDto.toEntity(attributeDto))
         );
     }

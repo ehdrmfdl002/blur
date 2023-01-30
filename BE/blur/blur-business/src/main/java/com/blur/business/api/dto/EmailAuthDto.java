@@ -1,7 +1,12 @@
 package com.blur.business.api.dto;
 
 import com.blur.business.entity.EmailAuth;
-import lombok.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor

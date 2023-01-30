@@ -35,21 +35,21 @@ public class RefreshTokenServiceImpl implements RefreshTokenService {
 
     @Transactional
     @Override
-    public void updateRefreshToken(Long id, String uuid) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new NotExistUserException("사용자 고유번호 : " + id + "는 없는 사용자입니다."));
+    public void updateRefreshToken(Integer userNo, String uuid) {
+        User user = userRepository.findById(userNo)
+                .orElseThrow(() -> new NotExistUserException("사용자 고유번호 : " + userNo + "는 없는 사용자입니다."));
 
-        refreshTokenRedisRepository.save(RefreshToken.of(user.getId().toString(), uuid));
+        refreshTokenRedisRepository.save(RefreshToken.of(user.getUserNo().toString(), uuid));
     }
 
     @Transactional
     @Override
     public JwtTokenDto refreshJwtToken(String accessToken, String refreshToken) {
-        String userId = jwtTokenProvider.getUserId(accessToken);
+        String userNo = jwtTokenProvider.getUserId(accessToken);
 
-        RefreshToken findRefreshToken = refreshTokenRedisRepository.findById(userId)
+        RefreshToken findRefreshToken = refreshTokenRedisRepository.findById(userNo)
                 .orElseThrow(()
-                        -> new RefreshTokenNotValidException("사용자 고유번호 : " + userId + "는 등록된 리프레쉬 토큰이 없습니다.")
+                        -> new RefreshTokenNotValidException("사용자 고유번호 : " + userNo + "는 등록된 리프레쉬 토큰이 없습니다.")
                 );
 
         // refresh token 검증
@@ -63,15 +63,15 @@ public class RefreshTokenServiceImpl implements RefreshTokenService {
             throw new RefreshTokenNotValidException("redis 의 값과 일치하지 않습니다. = " + refreshToken);
         }
 
-        User findUser = userRepository.findById(Long.valueOf(userId))
-                .orElseThrow(() -> new NotExistUserException("유저 고유 번호 : " + userId + "는 없는 유저입니다."));
+        User findUser = userRepository.findById(Integer.valueOf(userNo))
+                .orElseThrow(() -> new NotExistUserException("유저 고유 번호 : " + userNo + "는 없는 유저입니다."));
 
         // access token 생성
         Authentication authentication = getAuthentication(findUser.getEmail());
         List<String> roles = authentication.getAuthorities()
                 .stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
 
-        String newAccessToken = jwtTokenProvider.createJwtAccessToken(userId, "/reissu", roles);
+        String newAccessToken = jwtTokenProvider.createJwtAccessToken(userNo, "/reissu", roles);
         Date expiredTime = jwtTokenProvider.getExpiredTime(newAccessToken);
 
         return JwtTokenDto.builder()

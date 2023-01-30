@@ -3,6 +3,39 @@ server.port: 0
 spring:
   application:
     name: user-service
+    
+# Security OAuth
+  security:
+    oauth2.client:
+      registration:
+        google:
+          clientId: '871343491779-e59od5bh6t12qa41cce5lkbu4ok745s5.apps.googleusercontent.com'
+          clientSecret: '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'
+          scope:
+            - email
+            - profile
+        naver:
+          clientId: 'kbnqJ8MXe1ujGFy2Bd77'
+          clientSecret: 'FhgB0qWTta'
+          clientAuthenticationMethod: post
+          authorizationGrantType: authorization_code
+          redirectUri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+          scope:
+            - nickname
+            - email
+            - profile_image
+          clientName: Naver
+        kakao:
+          clientId: '2820dd0f9d4da11c57a25ab3f29de16c'
+          clientSecret: 'cXiw9put8fVqQ0rW436JqzJIdtSyRDWp'
+          clientAuthenticationMethod: post
+          authorizationGrantType: authorization_code
+          redirectUri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+          scope:
+            - profile_nickname
+            - profile_image
+            - account_email
+          clientName: Kakao
 
   zipkin:
     base-url: http://127.0.0.1:9411

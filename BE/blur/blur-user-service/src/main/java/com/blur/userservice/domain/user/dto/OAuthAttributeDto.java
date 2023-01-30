@@ -18,14 +18,15 @@ public class OAuthAttributeDto {
     private Map<String, Object> attributes; // OAuth2 반환하는 유저정보 MAP
     private String nameAttributeKey;
 //    private String name;
+    private String userId;
     private String email;
     private AuthType authType;
 
 
-    public OAuthAttributeDto(Map<String, Object> attributes, String nameAttributeKey, String name, String email) {
+    public OAuthAttributeDto(Map<String, Object> attributes, String nameAttributeKey, String userId, String email) {
         this.attributes = attributes;
         this.nameAttributeKey = nameAttributeKey;
-//        this.name = name;
+        this.userId = userId;
         this.email = email;
     }
 
@@ -33,8 +34,8 @@ public class OAuthAttributeDto {
         // 여기서 네이버와 카카오 등 구분 (ofNaver, ofKakao)
         if("naver".equals(registrationId))
             return ofNaver(userNameAttributeName , attributes);
-        if("naver".equals(registrationId))
-            return ofNaver(userNameAttributeName , attributes);
+        if("kakao".equals(registrationId))
+            return ofKakao(userNameAttributeName , attributes);
         return ofGoogle(userNameAttributeName, attributes);
     }
 
@@ -42,6 +43,7 @@ public class OAuthAttributeDto {
         Map<String, Object> response = (Map<String, Object>) attributes.get("response");
         return OAuthAttributeDto.builder()
 //                .name((String) response.get("name"))
+        		.userId((String) response.get("id"))
                 .email((String) response.get("email"))
                 .nameAttributeKey("id")
                 .attributes(response)
@@ -53,6 +55,7 @@ public class OAuthAttributeDto {
     private static OAuthAttributeDto ofGoogle(String userNameAttributeName, Map<String, Object> attributes) {
         return OAuthAttributeDto.builder()
 //                .name((String) attributes.get("name"))
+        		.userId((String) attributes.get("sub"))
                 .email((String) attributes.get("email"))
                 .nameAttributeKey(userNameAttributeName)
                 .attributes(attributes)
@@ -66,6 +69,7 @@ public class OAuthAttributeDto {
 			
 			return OAuthAttributeDto.builder()
 //			.name((String) kakaoProfile.get("nickname"))
+			.userId((String) kakaoAccount.get("sub"))
 			.email((String) kakaoAccount.get("email"))
 			.attributes(kakaoAccount)
 			.authType(AuthType.KAKAO)
@@ -77,6 +81,6 @@ public class OAuthAttributeDto {
 //    }
 
     public User toEntity(OAuthAttributeDto attributeDto) {
-    	return new User(email, )
+    	return new User(userId, email, "null", attributeDto.getAuthType());
     }
 }

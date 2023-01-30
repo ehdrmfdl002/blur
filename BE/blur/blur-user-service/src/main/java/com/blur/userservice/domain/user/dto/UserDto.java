@@ -1,32 +1,36 @@
 package com.blur.userservice.domain.user.dto;
 
 import com.blur.userservice.domain.user.entity.AuthType;
+import com.blur.userservice.domain.user.entity.User;
 
 import lombok.Getter;
 
 @Getter
-public abstract class UserDto {
-    private Long id;
+public class UserDto {
+    private int userNo;
+    private String userId;
     private String email;
     private String password;
-//    private String name;
-    private String gender;
-    private String dtype;
+//    private String gender;
     private AuthType authType;
     
-	public UserDto(Long id, String email, String password, String gender, String dtype,
-			AuthType authType) {
-		this.id = id;
+	public UserDto(User user) {
+		this.userNo = user.getUserNo();
+		this.userId = user.getUserId();
+		this.email = user.getEmail();
+		this.password = user.getPassword();
+	}
+
+	public UserDto(int userNo, String userId, String email, String password, AuthType authType) {
+		super();
+		this.userNo = userNo;
+		this.userId = userId;
 		this.email = email;
 		this.password = password;
-//		this.name = name;
-		this.gender = gender;
-		this.dtype = dtype;
 		this.authType = authType;
 	}
 
-    
-    // == 생성 메소드 == //
+//    // == 생성 메소드 == //
 //    public UserDto(Customer customer) {
 //        this.id = customer.getId();
 //        this.email = customer.getEmail();
@@ -35,5 +39,5 @@ public abstract class UserDto {
 //        this.phoneNumber = customer.getPhoneNumber();
 //    }
 
-	
+    
 }

@@ -43,6 +43,9 @@ function SignUp({ showSignUpModal, showSignInModal }) {
       data: {
         userId: id,
       },
+      params: {
+        userId: id,
+      },
     })
       .then((res) => {
         setIdCheck(res.data);
@@ -97,6 +100,11 @@ function SignUp({ showSignUpModal, showSignInModal }) {
         method: "post",
         url: `${API_URL}/signUp`,
         data: {
+          userId: id,
+          password: ps1,
+          email: email,
+        },
+        params: {
           userId: id,
           password: ps1,
           email: email,

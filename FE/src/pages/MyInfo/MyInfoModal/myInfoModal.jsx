@@ -23,6 +23,7 @@ function MyInfoModal({ showMyinfoModal }) {
   const [nickedit, setNickEdit] = useState(false);
   const [email, setEmail] = useState("");
   const [emailedit, setEmailEdit] = useState(false);
+
   const [introducing, setIntroducing] = useState("");
 
   // const user = useSelector((state) => state.member);
@@ -35,39 +36,35 @@ function MyInfoModal({ showMyinfoModal }) {
   // }, [member]);
 
   // 이미지 업로드
-  const newForm = document.createElement("form");
 
-  const fileUpload = document.createElement("input");
-  fileUpload.setAttribute("type", "file");
-  fileUpload.setAttribute("id", "file");
-  fileUpload.setAttribute("accept", "image/*");
+  // const [Image, setImage] = useState(
+  //   "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+  // );
+  // const fileInput = useRef(null);
 
-  newForm.append(fileUpload);
+  // const onChange = (e) => {
+  //   if (e.target.files[0]) {
+  //     setFile(e.target.files[0]);
+  //   } else {
+  //     //업로드 취소할 시
+  //     setImage(
+  //       "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+  //     );
+  //     return;
+  //   }
+  //   //화면에 프로필 사진 표시
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     if (reader.readyState === 2) {
+  //       setImage(reader.result);
+  //     }
+  //   };
+  //   reader.readAsDataURL(e.target.files[0]);
+  // };
 
-  const [Image, setImage] = useState();
-  const [File, setFile] = useState();
-
-  const fileInput = useRef(null);
-
-  const onChange = (e) => {
-    if (e.target.files[0]) {
-      setFile(e.target.files[0]);
-    } else {
-      //업로드 취소할 시
-      setImage(
-        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-      );
-      return;
-    }
-    //화면에 프로필 사진 표시
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setImage(reader.result);
-      }
-    };
-    reader.readAsDataURL(e.target.files[0]);
-  };
+  // 성별
+  const gender = ["Male", "FeMale"];
+  const [genderCheck, setgenderCheck] = useState("check");
 
   // 데이터 가져오는 거
   const dispatch = useDispatch({});
@@ -152,7 +149,7 @@ function MyInfoModal({ showMyinfoModal }) {
     <div className="Modal">
       {setModal ? <SetModal showSettingModal={showSettingModal} /> : null}
       <div className="leftModal">
-        <input
+        {/* <input
           className="leftModalImg"
           type="file"
           // style={{ display: "none" }}
@@ -160,7 +157,15 @@ function MyInfoModal({ showMyinfoModal }) {
           accept="image/*"
           // onChange={onChange}
           // ref={fileInput}
-        ></input>
+        ></input> */}
+        {/* <input
+          type="file"
+          style={{ display: "none" }}
+          accept="image/jpg,impge/png,image/jpeg"
+          name="profile_img"
+          onChange={onChange}
+          ref={fileInput}
+        /> */}
 
         <div className="leftModalNameDiv">
           <h1 className="leftModalName"> welcome {user[0]} </h1>
@@ -206,7 +211,6 @@ function MyInfoModal({ showMyinfoModal }) {
         <div className="PMMBTI">
           <span className="PMMBTILabel">MBTI</span>
           <select className="PMMBTISelect">
-            <option> 모름 </option>
             <option> INTJ</option>
             <option> INTP </option>
             <option> ENTJ </option>
@@ -246,12 +250,20 @@ function MyInfoModal({ showMyinfoModal }) {
         <div className="PMMGender">
           <span className="PMMGenderLable">Gender</span>
           <div className="PMMGenderdiv">
-            <div className="PMMGenderMale">
-              <span className="PMMGenderMaleText"> Male</span>
-            </div>
-            <div className="PMMGenderFemale">
-              <span className="PMMGenderFeMaleText"> FeMale</span>
-            </div>
+            {/* <button className="PMMGenderMale ">{gender[0]}</button> */}
+            <button
+              className={`btn ${genderCheck === "check" ? "active" : ""}`} // tab 값이 'curr' 이면 active 클래스를 추가
+              onClick={() => setgenderCheck("check")}
+            >
+              {gender[0]}
+            </button>
+            {/* <button className="PMMGenderFemale">{gender[1]}</button> */}
+            <button
+              className={`-btn ${genderCheck === "prev" ? "active" : ""}`} // tab 값이 'prev' 이면 active 클래스를 추가
+              onClick={() => setgenderCheck("prev")} // 클릭했을 때 tab 값이 'prev'로 변경된다.
+            >
+              {gender[1]}
+            </button>
           </div>
           <div className="PMIntroducing">
             <span className="PMIntroducingLabel">Introducing</span>

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import MyInfoModal from "../pages/MyInfo/MyInfoModal/myInfoModal";
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+// import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
 export const CHANGE = "USER/CHANGE";
@@ -57,7 +57,7 @@ export default userEdit;
 // 코드 훔쳐 오기@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 // import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// // import { http } from "../../api/axios";
+// // import { http } from "../api/axios";
 // import { useDispatch } from "react-redux";
 
 // 회원 닉네임 설정

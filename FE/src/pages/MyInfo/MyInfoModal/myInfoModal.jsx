@@ -9,7 +9,7 @@ import { changeName } from "../../../reducer/userEdit";
 import "../../../reducer/userEdit";
 import SetModal from "./SetModal/setmodal";
 import styled from "styled-components";
-import Avatar from "react-avatar";
+// import Avatar from "react-avatar";
 // import "../index";
 
 function MyInfoModal({ showMyinfoModal }) {
@@ -153,6 +153,7 @@ function MyInfoModal({ showMyinfoModal }) {
           <label className="signup-profileImg-label" htmlFor="profileImg">
             프로필 이미지 추가
           </label>
+
           <input
             type="file"
             accept="image/*"
@@ -184,6 +185,7 @@ function MyInfoModal({ showMyinfoModal }) {
           ref={imgRef}
           style={{ display: "none" }}
         ></input>
+
         <div className="leftModalNameDiv">
           <span className="leftModalName"> welcome {user[0]} </span>
         </div>

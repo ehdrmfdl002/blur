@@ -3,7 +3,7 @@ import "./signUp.css";
 import axios from "axios";
 
 function SignUp({ showSignUpModal, showSignInModal }) {
-  const API_URL = "";
+  const API_URL = "http://localhost:8080";
 
   const [id, setId] = useState(null);
   const enterId = (e) => {
@@ -29,10 +29,10 @@ function SignUp({ showSignUpModal, showSignInModal }) {
     console.log(email);
   };
 
-  const [owNumber, setOwNumber] = useState(null);
-  const enterOwNumber = (e) => {
-    setOwNumber(e.target.value);
-    console.log(owNumber);
+  const [emailCode, setEmailCode] = useState(null);
+  const enterEmailCode = (e) => {
+    setEmailCode(e.target.value);
+    console.log(emailCode);
   };
 
   const [idCheck, setIdCheck] = useState(false);
@@ -43,15 +43,15 @@ function SignUp({ showSignUpModal, showSignInModal }) {
       data: {
         userId: id,
       },
-      params: {
-        userId: id,
-      },
     })
       .then((res) => {
-        setIdCheck(res.data);
-        console.log(idCheck);
-        if (!idCheck) {
+        console.log(res);
+
+        if (!res.data) {
           alert("아이디가 중복되었습니다");
+        } else {
+          alert("사용가능한 아이디입니다.");
+          setIdCheck(res.data);
         }
       })
       .catch((err) => {
@@ -74,13 +74,17 @@ function SignUp({ showSignUpModal, showSignInModal }) {
 
   useEffect(() => {
     callPsCheck(ps1, ps2);
-  }, [ps2]);
+  }, [ps1, ps2]);
 
   const [emailCheck, setEmailCheck] = useState(false);
+
   const sendToEmail = () => {
     axios({
       method: "post",
       url: `${API_URL}/sendAuthEmail`,
+      data: {
+        email: email,
+      },
     })
       .then((res) => {
         console.log(res);
@@ -93,18 +97,15 @@ function SignUp({ showSignUpModal, showSignInModal }) {
       });
   };
 
+  const [emailCodeCheck, setEmailCodeCheck] = useState(false);
+
   const onSubmit = (e) => {
     e.preventDefault();
-    if (idCheck && psCheck && emailCheck) {
+    if (idCheck && psCheck && emailCodeCheck) {
       axios({
         method: "post",
-        url: `${API_URL}/signUp`,
+        url: `${API_URL}/register`,
         data: {
-          userId: id,
-          password: ps1,
-          email: email,
-        },
-        params: {
           userId: id,
           password: ps1,
           email: email,
@@ -121,6 +122,27 @@ function SignUp({ showSignUpModal, showSignInModal }) {
     }
   };
 
+  useEffect(() => {
+    if (idCheck === true) {
+      alert("아이디가 바뀌었습니다. 다시 중복확인 해주세요");
+      setIdCheck(false);
+    }
+  }, [id, idCheck]);
+
+  useEffect(() => {
+    if (emailCheck === true) {
+      alert("이메일이 바뀌었습니다. 다시 인증코드 보내세요");
+      setEmailCheck(false);
+    }
+  }, [email, emailCheck]);
+
+  useEffect(() => {
+    if (emailCodeCheck === true) {
+      alert("이메일인증코드가 바뀌었습니다. 다시 인증코드 보내세요");
+    }
+    setEmailCodeCheck(false);
+  }, [emailCode, emailCodeCheck]);
+
   return (
     <div className="SUModal">
       <div className="SUModalHeader">
@@ -134,11 +156,12 @@ function SignUp({ showSignUpModal, showSignInModal }) {
           <input
             className="SUModalInputId"
             id="user_id"
-            placeholder="ID를 입력해 주세요"
+            placeholder="  ID를 입력해 주세요"
             onChange={enterId}
           ></input>
           <button
             style={{ cursor: "pointer" }}
+
             // onClick={(e) => {
             //   e.preventDefault(), callIdCheck();
             // }}
@@ -153,7 +176,7 @@ function SignUp({ showSignUpModal, showSignInModal }) {
           <input
             className="SUModalInputPw"
             id="user_pw"
-            placeholder="PW를 입력해 주세요"
+            placeholder="  PW를 입력해 주세요"
             onChange={enterPs1}
           ></input>
         </div>
@@ -164,7 +187,7 @@ function SignUp({ showSignUpModal, showSignInModal }) {
           <input
             className="SUModalInputPwChk"
             id="user_pw_re"
-            placeholder="PW를 다시 입력해 주세요"
+            placeholder="  PW를 다시 입력해 주세요"
             onChange={enterPs2}
           ></input>
           {psWarn ? <span>비밀번호가 다릅니다!</span> : null}
@@ -176,10 +199,11 @@ function SignUp({ showSignUpModal, showSignInModal }) {
           <input
             className="SUModalInputEmail"
             id="user_email"
-            placeholder="E-mail을 입력해 주세요"
+            placeholder="  E-mail을 입력해 주세요"
             onChange={enterEmail}
           ></input>
           <button
+
           // style={{ cursor: "pointer" }}
           // onClick={(e) => {
           //   e.preventDefault(), sendToEmail();
@@ -198,8 +222,8 @@ function SignUp({ showSignUpModal, showSignInModal }) {
           <input
             className="SUModalInputEmailConfirm"
             id="user_email_confirm"
-            placeholder="인증번호를 입력해 주세요"
-            onChange={enterOwNumber}
+            placeholder="  인증번호를 입력해 주세요"
+            onChange={enterEmailCode}
           ></input>
           <button
             style={{ cursor: "pointer" }}

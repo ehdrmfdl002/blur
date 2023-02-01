@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./signUp.css";
 import axios from "axios";
 
@@ -55,7 +55,8 @@ function SignUp({ showSignUpModal, showSignInModal }) {
         }
       })
       .catch((err) => {
-        console.log(err);
+        alert("중복확인 실패했습니다");
+        setIdCheck(true);
       });
   };
 
@@ -67,7 +68,6 @@ function SignUp({ showSignUpModal, showSignInModal }) {
       setPsWarn(false);
     } else {
       setPsCheck(false);
-      console.log("비밀번호가 다릅니다");
       setPsWarn(true);
     }
   };
@@ -101,7 +101,16 @@ function SignUp({ showSignUpModal, showSignInModal }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (idCheck && psCheck && emailCodeCheck) {
+    if (
+      id &&
+      ps1 &&
+      email &&
+      emailCode &&
+      idCheck &&
+      psCheck &&
+      emailCheck &&
+      emailCodeCheck
+    ) {
       axios({
         method: "post",
         url: `${API_URL}/register`,
@@ -127,21 +136,42 @@ function SignUp({ showSignUpModal, showSignInModal }) {
       alert("아이디가 바뀌었습니다. 다시 중복확인 해주세요");
       setIdCheck(false);
     }
-  }, [id, idCheck]);
+  }, [id]);
 
   useEffect(() => {
     if (emailCheck === true) {
       alert("이메일이 바뀌었습니다. 다시 인증코드 보내세요");
       setEmailCheck(false);
     }
-  }, [email, emailCheck]);
+  }, [email]);
 
   useEffect(() => {
     if (emailCodeCheck === true) {
       alert("이메일인증코드가 바뀌었습니다. 다시 인증코드 보내세요");
     }
     setEmailCodeCheck(false);
-  }, [emailCode, emailCodeCheck]);
+  }, [emailCode]);
+
+  const signUpButton = useRef(null);
+
+  useEffect(() => {
+    if (
+      id &&
+      ps1 &&
+      email &&
+      emailCode &&
+      idCheck &&
+      psCheck &&
+      emailCheck &&
+      emailCodeCheck
+    ) {
+      signUpButton.current.disabled = false;
+      signUpButton.current.style.background = "#50a1a3";
+    } else {
+      signUpButton.current.disabled = true;
+      signUpButton.current.style.background = "grey";
+    }
+  }, [id, ps1, email, emailCode, idCheck, psCheck, emailCheck, emailCodeCheck]);
 
   return (
     <div className="SUModal">
@@ -160,7 +190,6 @@ function SignUp({ showSignUpModal, showSignInModal }) {
             onChange={enterId}
           ></input>
           <button
-            style={{ cursor: "pointer" }}
             onClick={(e) => {
               return e.preventDefault(), callIdCheck();
             }}
@@ -202,7 +231,6 @@ function SignUp({ showSignUpModal, showSignInModal }) {
             onChange={enterEmail}
           ></input>
           <button
-            style={{ cursor: "pointer" }}
             onClick={(e) => {
               return e.preventDefault(), sendToEmail();
             }}
@@ -223,26 +251,17 @@ function SignUp({ showSignUpModal, showSignInModal }) {
             placeholder="  인증번호를 입력해 주세요"
             onChange={enterEmailCode}
           ></input>
-          <button
-            style={{ cursor: "pointer" }}
-            onClick={(e) => e.preventDefault()}
-          >
-            인증번호 확인
-          </button>
+          <button onClick={(e) => e.preventDefault()}>인증번호 확인</button>
         </div>
 
-        <button
-          className="SUSignUpBtn"
-          style={{ cursor: "pointer" }}
-          onClick={onSubmit}
-        >
-          <span className="SUBtnText">회원가입</span>
+        <button className="SUSignUpBtn" ref={signUpButton} onClick={onSubmit}>
+          {/* <span className="SUBtnText">회원가입</span> */}
+          회원가입
         </button>
       </form>
 
       <button
         className="SUCancleBtn"
-        style={{ cursor: "pointer" }}
         onClick={() => {
           showSignUpModal();
           showSignInModal();

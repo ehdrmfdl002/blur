@@ -8,4 +8,5 @@ import com.blur.userservice.api.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
     User findByUserId(String userId);
+    User findByUserNo(Integer userNo);
 }

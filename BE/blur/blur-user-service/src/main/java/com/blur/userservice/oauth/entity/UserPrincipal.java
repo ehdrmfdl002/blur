@@ -12,6 +12,7 @@ import org.springframework.security.oauth2.core.oidc.OidcUserInfo;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
+import com.blur.userservice.api.dto.LoginDto;
 import com.blur.userservice.api.entity.User;
 
 import lombok.AllArgsConstructor;
@@ -30,7 +31,9 @@ public class UserPrincipal implements OAuth2User, UserDetails, OidcUser {
     private final RoleType roleType;
     private final Collection<GrantedAuthority> authorities;
     private Map<String, Object> attributes;
-
+    
+    private LoginDto loginDto;
+    
     @Override
     public Map<String, Object> getAttributes() {
         return attributes;

@@ -133,11 +133,11 @@ BLUR는 블라인드 소개팅과 사람들이 대화할 때 나는 소리인 �
 
 - 로그인 시퀀스 다이어그램
 
-![springboot-oauth.jpg](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/springboot-oauth.jpg)
+![springboot-oauth.jpg](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\springboot-oauth.jpg)
 
 - ERD
 
-![blur_20230202_153150.png](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/blur_20230202_153150.png)
+![blur_20230202_153150.png](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\blur_20230202_153150.png)
 
 - [캐시서버 사용 이유 및 Redis 선택 이유]()
 
@@ -149,97 +149,97 @@ BLUR는 블라인드 소개팅과 사람들이 대화할 때 나는 소리인 �
 
 ### Landing Page
 
-![1.jpg](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/1.jpg)
+![1.jpg](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\1.jpg)
 
 ### Start Page
 
-![startpage.png](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/startpage.png)
+![startpage.png](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\startpage.png)
 
 ### Start Page - Sign In
 
-![start Page - Sign In.png](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/start_Page_-_Sign_In.png)
+![start Page - Sign In.png](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\start_Page_-_Sign_In.png)
 
 ### Start Page - Sign Up
 
-![start Page - Sign Up.png](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/start_Page_-_Sign_Up.png)
+![start Page - Sign Up.png](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\start_Page_-_Sign_Up.png)
 
 ### Start Page - Searching Password
 
-![start Page - Searching Password.png](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/start_Page_-_Searching_Password.png)
+![start Page - Searching Password.png](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\start_Page_-_Searching_Password.png)
 
 ### Home Page
 
 - 사진과 차트 캐러셀 표현
 - 툴팁 표현
 
-![Home Page.png](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/Home_Page.png)
+![Home Page.png](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\Home_Page.png)
 
-![Home Page2.png](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/Home_Page2.png)
+![Home Page2.png](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\Home_Page2.png)
 
 ### Meeting Page - Not Matching In
 
 - 매칭을 잡는 중일 때
 
-![Meeting Page - 24.jpg](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/Meeting_Page_-_24.jpg)
+![Meeting Page - 24.jpg](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\Meeting_Page_-_24.jpg)
 
 - 매칭이 잡혔을 때
 
-![Untitled](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/Untitled.png)
+![Untitled](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\Untitled.png)
 
 ### Meeting Page - Matching In
 
-![Untitled](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/Untitled%201.png)
+![Untitled](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\Untitled%201.png)
 
 - 나의 캠 상단의 이모지 버튼 눌르게 될 때
   - 이모지가 여러개 펼쳐지며, 클릭 시 상대방 카메라에 표현이 되도록 구현할 것
 - 나의 캠/상대방 캠 하단의 토글버튼 구현
   - 카메라 종류 선택/카메라 온오프/마이크 온오프/ 소리 음량 조절/ 신고 버튼 구현
 
-![Untitled](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/Untitled%202.png)
+![Untitled](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\Untitled%202.png)
 
 - 상대방 캠 상단의 전구 버튼을 눌르게 될 때
   - 상대방이 프로필에서 설정한 관심사 태그 표시
 
-![Untitled](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/Untitled%203.png)
+![Untitled](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\Untitled%203.png)
 
 - 일정 시간이 지났을 때
   - 상대방이 채탕창에 추가 됨
 
-![Untitled](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/Untitled%204.png)
+![Untitled](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\Untitled%204.png)
 
 - 블러 효과가 옅어질 때마다
   - Progress bar 중앙에 블러 효과가 옅어진다는 문구 표시
 
-![Untitled](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/Untitled%205.png)
+![Untitled](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\Untitled%205.png)
 
 ### Chatting
 
 - 상단 메뉴바를 클릭 시, 채팅 모달 생성
 
-![## (2).png](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/_(2).png)
+![## (2).png](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\_(2).png)
 
 - 상대방과 연결된 채팅방 클릭시, 화면 중앙에 채팅 모달 구현
 
-![Untitled](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/Untitled%206.png)
+![Untitled](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\Untitled%206.png)
 
 ### Profile Page
 
 - 자기소개/이름/성별/관심사/프로필 이미지를 설정 및 변경
 - 다른 사람의 경우에도 해당 페이지 확인가능(Read Only)
 
-![Untitled](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/Untitled%207.png)
+![Untitled](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\Untitled%207.png)
 
 - 관심사 설정 후 페이지
 
-![Untitled](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/Untitled%208.png)
+![Untitled](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\Untitled%208.png)
 
 - 프로필 수정 모달
 
-![Untitled](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/Untitled%209.png)
+![Untitled](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\Untitled%209.png)
 
 - 환경설정 모달
 
-![Untitled](%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20md%206f1198312b9449cd872aa2e1c87f41ff/Untitled%2010.png)
+![Untitled](C:\Users\SSAFY\Desktop\git_file\blur프로젝트\README_assets\Untitled%2010.png)
 
 # 백앤드 디렉토리 구조
 

@@ -1,4 +1,4 @@
-![logo](README_assets/blurlogo.jpg)
+![blurlogo](/uploads/08d93469d1f1e286373946b0db39380b/blurlogo.jpg)
 
 <center><h1>Blur</h1></center>
 

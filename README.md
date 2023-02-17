@@ -271,34 +271,6 @@ BLUR는 블라인드 소개팅과 사람들이 대화할 때 나는 소리인 �
 
 ---
 
-### Landing Page
-
-![4](/uploads/38f281c33a2164bc176f1ecf715ff0cc/4.jpg)
-### Start Page
-
-![5](/uploads/1894578f57854128d0eb4ed003bcad73/5.png)
-
-### Start Page - Sign In
-
-![6](/uploads/ede266bbaffe278f133db1e70bef0cbb/6.png)
-
-### Start Page - Sign Up
-
-![7](/uploads/159882546fb68e956aa476f44c28a1e6/7.png)
-
-### Start Page - Searching Password
-
-![8](/uploads/bcd5e32152233981a053c53026a0c793/8.png)
-
-### Home Page
-
-- 사진과 차트 캐러셀 표현
-- 툴팁 표현
-
-![9](/uploads/e163617d45d7d69ca415fc5fe7eec824/9.png)
-
-![10](/uploads/ee4fbed4c7c53640b175223b4c293509/10.png)
-
 ### Meeting Page - Not Matching In
 
 - 매칭을 잡는 중일 때
@@ -345,21 +317,4 @@ BLUR는 블라인드 소개팅과 사람들이 대화할 때 나는 소리인 �
 
 ![19](/uploads/dcc258424078a7eba816e7a3944c7555/19.png)
 
-### Profile Page
-
-- 자기소개/이름/성별/관심사/프로필 이미지를 설정 및 변경
-- 다른 사람의 경우에도 해당 페이지 확인가능(Read Only)
-
-![20](/uploads/8d5d7f51ffb69c617a2ee8185496339f/20.png)
-
-- 관심사 설정 후 페이지
-
-![21](/uploads/04bca03c1ea60c5ab752bcc6dcb72df7/21.png)
-
-- 프로필 수정 모달
-
-![22](/uploads/f8c0c43996517bf8c3393452b7c51f9b/22.png)
-- 환경설정 모달
-
-![23](/uploads/3fbb4c2050a08ae230a96ce35f726867/23.png)
 ---

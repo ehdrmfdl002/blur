@@ -212,11 +212,12 @@ BLUR는 블라인드 소개팅과 사람들이 대화할 때 나는 소리인 �
 
 #### Gitlab
 
-
 - git-flow 방식 기반의 코드 버전 관리
 - 이슈 발생 시 해당 기능 담당자 끼리 토론
 
 #### JIRA
+
+![image](/uploads/5385fb114387b948fdd85c22de1a7ae8/image.png)
 
 - 매주 목표량 달성을 위한 Sprint 진행
 

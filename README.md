@@ -280,6 +280,14 @@ $ npm start
 
 ## Api명세서(Swagger)
 
+![Untitled](/uploads/17a0cd07243c5c3c83e0ee5a011acda3/Untitled.png)
+
+![match_swagger.PNG](/uploads/6342972f44a5ea90c31871ac01cf0d6e/match_swagger.PNG.png)
+
+![profile_swagger.PNG](/uploads/84e76405649d3ed6f6b669be1e259b99/profile_swagger.PNG.png)
+
+![auth_swagger.PNG](/uploads/0bb72aa9dc4ce564bc50cdf24e80e5ed/auth_swagger.PNG.png)
+
 ---
 
 ## 피그마
@@ -378,4 +386,3 @@ $ npm start
 
 ![23](/uploads/3fbb4c2050a08ae230a96ce35f726867/23.png)
 ---
->>>>>>> 04fa302a50f201850fd6e0054d81ec12f89b6142

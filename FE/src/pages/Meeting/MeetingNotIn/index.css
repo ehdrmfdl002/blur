@@ -73,8 +73,7 @@
   top: 0px;
   background: #50a1a3;
   border-radius: 50px;
-  -webkit-animation: loading 2s 0s linear infinite;
-          animation: loading 2s 0s linear infinite; /* 이벤트명  반복시간  딜레이시간  이벤트처리부드럽게  이벤트무한반복*/
+  animation: loading 2s 0s linear infinite; /* 이벤트명  반복시간  딜레이시간  이벤트처리부드럽게  이벤트무한반복*/
 }
 .MCenterDiv .MCenterCirclesDiv .MPCenterCircle2 {
   position: absolute;
@@ -84,8 +83,7 @@
   top: 0px;
   background: #30ab70;
   border-radius: 50px;
-  -webkit-animation: loading 2s 0.3s linear infinite;
-          animation: loading 2s 0.3s linear infinite; /* 이벤트명  반복시간  딜레이시간  이벤트처리부드럽게  이벤트무한반복*/
+  animation: loading 2s 0.3s linear infinite; /* 이벤트명  반복시간  딜레이시간  이벤트처리부드럽게  이벤트무한반복*/
 }
 .MCenterDiv .MCenterCirclesDiv .MPCenterCircle3 {
   position: absolute;
@@ -95,8 +93,7 @@
   top: 0px;
   background: #ffcf53;
   border-radius: 50px;
-  -webkit-animation: loading 2s 0.6s linear infinite;
-          animation: loading 2s 0.6s linear infinite; /* 이벤트명  반복시간  딜레이시간  이벤트처리부드럽게  이벤트무한반복*/
+  animation: loading 2s 0.6s linear infinite; /* 이벤트명  반복시간  딜레이시간  이벤트처리부드럽게  이벤트무한반복*/
 }
 
 .MLeftDiv {
@@ -108,28 +105,77 @@
   z-index: 3;
 }
 .MLeftDiv__none {
-  -webkit-animation: moving 1s 0s linear forwards;
-          animation: moving 1s 0s linear forwards; /* 이벤트명  반복시간  딜레이시간  이벤트처리부드럽게  이벤트무한반복*/
+  animation: moving 1s 0s linear forwards; /* 이벤트명  반복시간  딜레이시간  이벤트처리부드럽게  이벤트무한반복*/
 }
 .MLeftDiv .MMyCamLabel {
   position: absolute;
   width: 103px;
   height: 33px;
-  left: 67.5px;
+  left: 15px;
   top: 0px;
   font-weight: 400;
   font-size: 18px;
   line-height: 33px;
-  color: #ffffff;
+  color: #5c202c;
 }
-.MLeftDiv .MMyCamDiv {
+.MLeftDiv .MMyCamDiv2.noShow {
+  display: none;
+}
+.MLeftDiv .MMyCamDiv2.show {
   position: absolute;
   width: 237.75px;
   height: 286.5px;
   top: 33px;
   left: 0px;
-  background-image: url(../../../assets/images/MPMyCam.png);
+  background-image: url(../../../assets/images/man4.jfif);
   background-size: 100% 100%;
+  z-index: 3;
+  border-radius: 30px;
+}
+.MLeftDiv .MMyCamSubCamToggleBtn {
+  position: absolute;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  top: 7px;
+  cursor: pointer;
+}
+.MLeftDiv .MMyCamSubCamToggleBtn.noShow {
+  background-image: url(../../../assets/images/camOn.png);
+  background-size: 100% 100%;
+}
+.MLeftDiv .MMyCamSubCamToggleBtn.show {
+  background-image: url(../../../assets/images/camOff.png);
+  background-size: 100% 100%;
+}
+.MLeftDiv .MMyCamSubMicBtn1 {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  left: 160px;
+  top: 5px;
+  cursor: pointer;
+}
+.MLeftDiv .MMyCamSubMicBtn1.myMicOff {
+  background-image: url(../../../assets/images/micOn.png);
+  background-size: 100% 100%;
+}
+.MLeftDiv .MMyCamSubMicBtn1.myMicOn {
+  background-image: url(../../../assets/images/micOff.png);
+  background-size: 100% 100%;
+}
+.MLeftDiv .MMyCamDiv3.noShow {
+  display: none;
+}
+.MLeftDiv .MMyCamDiv3.show {
+  display: block;
+  position: absolute;
+  width: 237.75px;
+  height: 286.5px;
+  top: 33px;
+  left: 0px;
+  z-index: 1;
+  border-radius: 30px;
 }
 
 .MStopBtnDiv {
@@ -151,8 +197,7 @@
 }
 .MStopBtnDiv__none {
   display: none;
-  -webkit-animation: moving 1s 0s linear forwards;
-          animation: moving 1s 0s linear forwards; /* 이벤트명  반복시간  딜레이시간  이벤트처리부드럽게  이벤트무한반복*/
+  animation: moving 1s 0s linear forwards; /* 이벤트명  반복시간  딜레이시간  이벤트처리부드럽게  이벤트무한반복*/
 }
 .MStopBtnDiv .MStopBtnText {
   position: absolute;
@@ -173,16 +218,6 @@
     - 50% : 투명도 1 && 원래의 크기 1.2배로 증가
     - 100%: 투명도 0 && 원래의 크기 0.5배로 감소
   */
-@-webkit-keyframes loading {
-  0%, 100% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-}
 @keyframes loading {
   0%, 100% {
     opacity: 0;

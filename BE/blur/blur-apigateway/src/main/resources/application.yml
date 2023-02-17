@@ -1,37 +1,10 @@
-
 server:
   port: 8000
-  ssl:
-    enabled: true
-    key-alias: baeldung
-    key-store-password: 1q2w3e4r!
-    key-store: classpath:baeldung.p12
-    key-store-type: PKCS12
-
-eureka:
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defalutZone: http://localhost:8761/eureka
 
 spring:
   application:
-    name: customer-apigateway-service
-
-  config:
-    import: optional:configserver:http://127.0.0.1:8888
-
-  zipkin:
-    base-url: http://127.0.0.1:9411
-    enabled: true
-  sleuth:
-    sampler:
-      probability: 1.0
-
+    name: blur-gateway
   cloud:
-    config:
-      name: bootstrap
     gateway:
       default-filters:
         - name: GlobalFilter
@@ -39,105 +12,76 @@ spring:
             baseMessage: Spring Cloud Gateway Global Filter
             preLogger: true
             postLogger: true
-      globalcors:
-        cors-configurations:
-          '[/**]':
-            allowedOrigins: "https://just-pickup.com:8080"
-            allowedMethods:
-              - GET
-              - POST
-              - DELETE
-              - PUT
-              - OPTIONS
-              - DELETE
-              - PATCH
-            allowedHeaders: '*'
-            allow-credentials: true
       routes:
-#        - id: order-service
-#          uri: lb://ORDER-SERVICE
-#          predicates:
-#            - Path=/order-service/**
-#          filters:
+        - id: blur-auth
+          uri: lb://BLUR-AUTH
+          predicates:
+            - Path=/blur-auth/**
+            - Method= GET, POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/blur-auth/(?<segment>.*), /$\{segment}
+        - id: blur-profile
+          uri: lb://BLUR-PROFILE
+          predicates:
+            - Path=/blur-profile/swagger-ui/**
+            - Method= GET, POST, PUT, OPTIONS
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/blur-profile/(?<segment>.*), /$\{segment}
+        - id: blur-match
+          uri: lb://BLUR-MATCH
+          predicates:
+            - Path=/blur-match/swagger-ui/**
+            - Method= GET, POST, PUT, OPTIONS
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/blur-match/(?<segment>.*), /$\{segment}
+        - id: blur-chat
+          uri: lb://BLUR-CHAT
+          predicates:
+            - Path=/blur-chat/swagger-ui/**
+            - Method= GET, POST, PUT, OPTIONS
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/blur-chat/(?<segment>.*), /$\{segment}
+        - id: blur-profile
+          uri: lb://BLUR-PROFILE
+          predicates:
+            - Path=/blur-profile/**
+            - Method= GET, POST, PUT, OPTIONS
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/blur-profile/(?<segment>.*), /$\{segment}
 #            - AuthorizationHeaderFilter
-#            - RewritePath=/order-service/(?<segment>.*),/$\{segment}
-#            - name: RequestRateLimiter
-#              args:
-#                redis-rate-limiter.replenishRate: 3
-#                redis-rate-limiter.burstCapacity: 3
-#                key-resolver: "#{@tokenKeyResolver}"
-#        - id: store-service
-#          uri: lb://STORE-SERVICE
-#          predicates:
-#            - Path=/store-service/**
-#          filters:
+        - id: blur-match
+          uri: lb://BLUR-MATCH
+          predicates:
+            - Path=/blur-match/**
+            - Method= GET, POST, PUT, OPTIONS
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/blur-match/(?<segment>.*), /$\{segment}
 #            - AuthorizationHeaderFilter
-#            - RewritePath=/store-service/(?<segment>.*),/$\{segment}
-#            - name: RequestRateLimiter
-#              args:
-#                redis-rate-limiter.replenishRate: 3
-#                redis-rate-limiter.burstCapacity: 3
-#                key-resolver: "#{@tokenKeyResolver}"
-
-#        - id: notification-service
-#          uri: lb://NOTIFICATION-SERVICE
-#          predicates:
-#            - Path=/notification-service/**
-#          filters:
+        - id: blur-chat
+          uri: lb://BLUR-CHAT
+          predicates:
+            - Path=/blur-chat/**
+          filters:
+#            - RemoveRequestHeader=Cookie
+#            - RewritePath=/blur-chat/(?<segment>.*), /$\{segment}
 #            - AuthorizationHeaderFilter
-#            - RewritePath=/notification-service/(?<segment>.*),/$\{segment}
 
-        - id: user-service
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/user-service/login
-            - Method=POST
-          filters:
-            - RewritePath=/user-service/(?<segment>.*),/$\{segment}
-        - id: user-service
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/user-service/reissue
-            - Method=GET
-          filters:
-            - RewritePath=/user-service/(?<segment>.*),/$\{segment}
-        - id: user-service
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/user-service/logout
-            - Method=POST
-          filters:
-            - RewritePath=/user-service/(?<segment>.*),/$\{segment}
-        - id: user-service
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/user-service/auth/reissue
-            - Method=GET
-          filters:
-            - RewritePath=/user-service/(?<segment>.*),/$\{segment}
-        - id: user-service
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/user-service/oauth2/authorization/*
-          filters:
-            - RewritePath=/user-service/(?<segment>.*),/$\{segment}
-        - id: user-service
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/user-service/*/oauth2/code/*
-          filters:
-            - RewritePath=/user-service/(?<segment>.*),/$\{segment}
-        - id: user-service
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/user-service/**
-          filters:
-            - AuthorizationHeaderFilter
-            - RewritePath=/user-service/(?<segment>.*),/$\{segment}
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
 
-token:
-  access-expired-time: 3600000
-  refresh-expired-time: 604800000
-  secret: $2a$10$q42lY7Y18xqrFt1qbODZIO4OMTeOxnrCe7tF3n9bazJinVE7VH5Pi
-  refresh-token-name: refresh-token
-  access-token-name: access-token
+  #token:
+  #  secret: blurUserTokenblurUserTokenblurUserTokenblurUserTokenblurUserTokenblurUserTokenblurUserTokenblurUserToken
+
+  
+  # jwt secret key 설정
+jwt.secret: '8sknjlO3NPTBqo319DHLNqsQAfRJEdKsETOds'

@@ -1,23 +1,89 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import "../../../App.css";
 import "./myInfoModal.css";
-
-import React, { useState, useRef, useEffect, useReducer } from "react";
-import ReactDOM from "react-dom";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { edit } from "../../../redux/reducers/userEdit";
+import { intro } from "../../../redux/reducers/introEdit";
+import { age } from "../../../redux/reducers/ageEdit";
 import SetModal from "./SetModal/setmodal";
-import styled from "styled-components";
-// import Avatar from "react-avatar";
-// import "../index";
 
-// 리덕스 툴킷 실습
-// function reducer(state, action){
-//   if(action.type === 'edit') {
-//     return (...state, value: state.value + action)
-//   }
-// }
+import axios from "axios";
+// import styled from "styled-components";
 
-function MyInfoModal({ showMyinfoModal }) {
+function MyInfoModal({ showMyinfoModal, showAlertModal }) {
+  const API_URL = `${process.env.REACT_APP_API_ROOT_DONGHO}/blur-profile/profile`;
+  const id = useSelector((state) => {
+    return state.strr.id;
+  });
+  // const id = "123123";
+
+  // 컴포넌트 켜지자말자 데이터 받아 오기
+  const [proFile, setProFile] = useState([]);
+  const token = useSelector((state) => {
+    return state.strr.token;
+  });
+
+  useEffect(() => {
+    axios({
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      url: `${API_URL}/${id}/getProfile`,
+      data: {},
+    })
+      .then((res) => {
+        setProFile(res.data);
+      })
+      .catch((err) => {});
+  }, []);
+
+  // 유저프로필 업데이트 하기
+  const distance = useSelector((state) => state.setDatee.distancee);
+  const minAge = useSelector((state) => state.setDatee.ageRange[0]);
+  const maxAge = useSelector((state) => state.setDatee.ageRange[1]);
+
+  const handleSave = () => {
+    const updatedProfile = {
+      userId: id,
+      age: ageInput === "" ? proFile.age : ageInput,
+      nickname: nameInput === "" ? proFile.nickname : nameInput,
+      introduce: introInput === "" ? proFile.introduce : introInput,
+      mbti: mbti === "" ? proFile.mbti : mbti,
+      gender:
+        genderCheck === ""
+          ? proFile.gender
+          : gender[genderCheck === "check" ? 0 : 1],
+      minAge: minAge === "" ? proFile.minAge : minAge,
+      maxAge: maxAge === "" ? proFile.maxAge : maxAge,
+      maxDistance: distance === "" ? proFile.maxDistance : distance,
+    };
+
+    setProFile(updatedProfile);
+
+    axios({
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      url: `${API_URL}/${id}/updateProfile`,
+      data: updatedProfile,
+    })
+      .then((res) => {
+        dispatch(edit(res.data.nickname));
+        dispatch(intro(res.data.introduce));
+        dispatch(age(res.data.age));
+        console.log(res.data);
+        setProFile(res.data);
+      })
+      .catch((err) => {});
+  };
+
   //setmodal
   const [setModal, setSettingmodal] = useState(false);
   const showSettingModal = () => {
@@ -25,19 +91,79 @@ function MyInfoModal({ showMyinfoModal }) {
   };
 
   //profile 변경
-  const [input, setInput] = useState("");
+  const [nameInput, setNameInput] = useState("");
+  const [introInput, setIntroInput] = useState("");
+  const [ageInput, setAgeInput] = useState("");
 
   // nicName
   const [nickName, setNickName] = useState("");
-  // const [nickedit, setNickEdit] = useState(false);
+
   const handleInputChange = (e) => {
-    setInput(e.target.value);
+    if (e.target.value.length <= 10) {
+      setNameInput(e.target.value);
+      setProFile({ ...proFile, nickname: e.target.value });
+    } else {
+      alert("10글자 이상 입력할 수 없습니다.");
+    }
+  };
+  // age
+  const [agee, setAge] = useState("");
+  const handleAgeChange = (e) => {
+    const inputValue = e.target.value;
+    if (!isNaN(inputValue) && inputValue.length <= 2) {
+      setAgeInput(inputValue);
+      setProFile({ ...proFile, age: e.target.value });
+    } else {
+      alert("숫자 2자리 이하만 입력 가능합니다.");
+    }
   };
 
+  //introducing
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const [introducing, setIntroducing] = useState("");
+  const introHandleChange = (e) => {
+    setIntroInput(e.target.value);
+    setProFile({ ...proFile, introduce: e.target.value });
+  };
+
+  // mbti
+  const [mbti, setMbti] = useState("");
+
+  const [mbtiOptions, setMbtiOptions] = useState([
+    { value: "ISTJ", label: "ISTJ - Inspector" },
+    { value: "ISFJ", label: "ISFJ - Protector" },
+    { value: "INFJ", label: "INFJ - Counselor" },
+    { value: "INTJ", label: "INTJ - Architect" },
+
+    { value: "ISTP", label: "ISTP - Craftsman" },
+    { value: "ISFP", label: "ISFP - Composer" },
+    { value: "INFP", label: "INFP - Healer" },
+    { value: "INTP", label: "INTP - Architect" },
+
+    { value: "ESTP", label: "ESTP - Dynamo" },
+    { value: "ESFP", label: "ESFP - Performer" },
+    { value: "ENFP", label: "ENFP - Champion" },
+    { value: "ENTP", label: "ENTP - Visionary" },
+
+    { value: "ESTJ", label: "ESTJ - Supervisor" },
+    { value: "ESFJ", label: "ESFJ - Provider" },
+    { value: "ENFJ", label: "ENFJ - Teacher" },
+    { value: "ENTJ", label: "ENTJ - Commander" },
+  ]);
+
+  const handleSelectChange = (event) => {
+    setMbti(event.target.value);
+  };
   // state 변경 핸들러
   const handleUpload = () => {
     setNickName(() => {
-      return input;
+      return nameInput;
+    });
+    setAge(() => {
+      return ageInput;
+    });
+    setIntroducing(() => {
+      return introInput;
     });
   };
 
@@ -48,150 +174,90 @@ function MyInfoModal({ showMyinfoModal }) {
     }
   };
 
-  // const [name, dispatch] = useReducer(reducer, "");
+  // 이미지
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
 
-  //emil
-  const [email, setEmail] = useState("");
-  const [emailedit, setEmailEdit] = useState(false);
+  function handleImageChange(event) {
+    setSelectedImage(event.target.files[0]);
+    setPreviewImage(URL.createObjectURL(event.target.files[0]));
+    alert("이미지를 업로드한 후 저장 버튼을 클릭해주세요.");
+  }
 
-  //introducing
-  const [introducing, setIntroducing] = useState("");
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-  // 이미지 업로드
-  //   <form>
-  //   <label className="signup-profileImg-label" htmlFor="profileImg">프로필 이미지 추가</label>
-  //   <input
-  //   className="signup-profileImg-input"
-  //   type="file"
-  //   accept="image/*"
-  //   id="profileImg"
-  //   />
-  // </form>
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-
-  // 이미지 미리보기
-  const [imgFile, setImgFile] = useState("");
-  const imgRef = useRef();
-
-  const saveImgFile = () => {
-    const file = imgRef.current.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setImgFile(reader.result);
-    };
-  };
-
-  // localStorage.setItem("data", JSON.stringify(imgRef));
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("profileImage", selectedImage);
+    axios
+      .post(`${API_URL}/${id}/updateImage`, formData)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err.data);
+      });
+  }
 
   // 성별
-  const gender = ["Male", "FeMale"];
-  const [genderCheck, setgenderCheck] = useState("check");
+  const gender = ["M", "F"];
+  // 초기 상태값으로 저장된 데이터가 'F'이면 'prev', 'M'이면 'check'로 설정
+  const [genderCheck, setgenderCheck] = useState(
+    proFile.gender === "F" ? "prev" : "check"
+  );
+  // 첫 렌더링 시, genderCheck 상태값을 초기 데이터에 따라 설정
+  useEffect(() => {
+    setgenderCheck(proFile.gender === "F" ? "prev" : "check");
+  }, [proFile.gender]);
 
-  // 데이터 가져오는 거
+  // 버튼 클릭 이벤트 핸들러
+  function handleButtonClick(genderType) {
+    setgenderCheck(genderType); // genderCheck 상태값 변경
+  }
 
-  //nicName
-  // let nicNamecontent = (
-  //   <div>
-  //     <button onClick={() => setNickEdit(true)}>수정</button>
-  //   </div>
-  // );
-
-  // if (nickedit) {
-  //   nicNamecontent = (
-  //     <div>
-  //       <input
-  //         className="PMIdInput"
-  //         type="text"
-  //         value={nickName}
-  //         onChange={(e) => {
-  //           setNickName(e.target.value);
-  //         }}
-  //         onKeyPress={handleOnKeyPress}
-  //       />
-  //       <button onClick={() => setNickEdit(false)}>수정완료</button>
-  //     </div>
-  //   );
-  // }
-
-  // //e-mail
-  // let emailContent = (
-  //   <div>
-  //     <button onClick={() => setEmailEdit(true)}>수정</button>
-  //   </div>
-  // );
-
-  // if (emailedit) {
-  //   emailContent = (
-  //     <div>
-  //       <input
-  //         className="PMIdInput"
-  //         type="text"
-  //         value={email}
-  //         onChange={(e) => {
-  //           setEmail(e.target.value);
-  //         }}
-  //         onKeyPress={handleOnKeyPress}
-  //       />
-  //       <button onClick={() => setEmailEdit(false)}>수정완료</button>
-  //     </div>
-  //   );
-  // }
-
-  const age = (19, 70);
-
-  // const ages = new Array(50).fill({ age });
-
-  const ages = [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33];
-
-  // 데이터 가져오는 거
+  // 데이터 주고 받기
   const dispatch = useDispatch();
-  const user = useSelector((state) => {
-    return state.user.value;
-  });
 
+  // setProFile(updatedProfile);
   return (
     <div className="Modal">
       {setModal ? <SetModal showSettingModal={showSettingModal} /> : null}
       <div className="leftModal">
         <div className="imgbox">
-          {/* <form>
-          <label className="signup-profileImg-label" htmlFor="profileImg">
-            프로필 이미지 추가
-          </label>
+          <form onSubmit={handleSubmit}>
+            <button type="submit" className="imageEditBtn" htmlFor="profileImg">
+              저장
+            </button>
+          </form>
 
+          <label htmlFor="profileImg">
+            {previewImage ? (
+              <img
+                src={previewImage}
+                alt="프로필 이미지"
+                className="leftModalImg"
+              />
+            ) : (
+              <img
+                className="leftModalImg"
+                src={
+                  proFile.image ||
+                  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                }
+                alt="프로필 이미지"
+              />
+            )}
+          </label>
           <input
             type="file"
-            accept="image/*"
             id="profileImg"
-            onChange={saveImgFile}
-            ref={imgRef}
+            onChange={handleImageChange}
+            style={{ display: "none" }}
           />
-        </form> */}
-
-          {/* 업로드 된 이미지 미리보기 */}
-          <label className="imageEditBtn" htmlFor="profileImg">
-            변경
-          </label>
-          <img className="leftModalImg" src={imgFile ? imgFile : `https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png`} alt="사진" />
-          {/* 이미지 업로드 input */}
-          <input type="file" accept="image/*" id="profileImg" onChange={saveImgFile} ref={imgRef} style={{ display: "none" }}></input>
         </div>
-        <div>
-          <button
-            onClick={() => {
-              const a = document.querySelector(".PMIdInput").value;
-              console.log(a);
-              dispatch(edit(a));
-            }}
-          >
-            +
-          </button>
-        </div>
-        <span className="leftModalName"> {user} </span>
         <div className="leftModalNameDiv">
-          <span className="leftModalName"> welcome {nickName} </span>
+          <span className="leftModalName">
+            welcome {proFile.nickname || "Guest"}
+          </span>
         </div>
         <div className="leftModalbtnDiv">
           <button
@@ -210,123 +276,83 @@ function MyInfoModal({ showMyinfoModal }) {
       <div className="ProfileModal">
         <span className="PMLabel">Profile Edit</span>
         <div className="PMIdDiv">
-          {/* <span className="PMIdLable">NickName {nicNamecontent}</span> */}
           <span className="PMIdLable">NickName </span>
           <input
             type="text"
             className="PMIdInput"
-            value={input}
-            // onChange={(event) => {
-            //   setNickName(event.target.value);
-            // }}
-            // onChange={user}
+            value={proFile.nickname ? proFile.nickname : nameInput}
             onChange={handleInputChange}
+            placeholder="10자까지만 가능합니다."
             onKeyPress={handleOnKeyPress}
-          />
-          {/* <button
-            onClick={() => {
-              handleUpload();
-            }}
-          >
-            버튼
-          </button> */}
-          {/* <button
-            onClick={() => {
-              dispatch(edit);
-              handleUpload()
-            }}
-          >
-            저장
-          </button> */}
+          ></input>
         </div>
         <div className="PMAge">
           <span className="PMAgeLabel">Age</span>
-          <select className="PMAgeSelect">
-            <option> {ages[0]}</option>;<option> {ages[1]}</option>;<option> {ages[2]}</option>;<option> {ages[3]}</option>;<option> {ages[4]}</option>;<option> {ages[5]}</option>;
-            <option> {ages[6]}</option>;<option> {ages[7]}</option>;<option> {ages[8]}</option>;<option> {ages[9]}</option>;<option> {ages[10]}</option>;<option> {ages[11]}</option>;
-            <option> {ages[12]}</option>;<option> {ages[13]}</option>;<option> {ages[14]}</option>;<option> {ages[15]}</option>;
-          </select>
+          <input
+            type="text"
+            className="PMAgeSelect"
+            value={proFile.age ? proFile.age : ageInput}
+            onChange={handleAgeChange}
+            placeholder="숫자만 입력 가능합니다."
+          ></input>
         </div>
         <div className="PMMBTI">
           <span className="PMMBTILabel">MBTI</span>
-          <select className="PMMBTISelect">
-            <option> INTJ</option>
-            <option> INTP </option>
-            <option> ENTJ </option>
-            <option> ENTP</option>
-
-            <option> INFJ </option>
-            <option> INFP </option>
-            <option> ENFJ </option>
-            <option> ENFP </option>
-
-            <option> ISTJ</option>
-            <option> ISFJ</option>
-            <option> ESTJ</option>
-            <option> ESFJ </option>
-
-            <option> ISTP</option>
-            <option> ISFP </option>
-            <option> ESTP </option>
-            <option> ESFP </option>
+          <select
+            value={mbti}
+            onChange={handleSelectChange}
+            className="PMMBTISelect"
+          >
+            {mbtiOptions.map((mbtiOptions) => (
+              <option key={mbtiOptions.value} value={mbtiOptions.value}>
+                {mbtiOptions.label}
+              </option>
+            ))}
           </select>
         </div>
+
         <div className="PMMEmail">
           <span className="PMMEmailLabel">E-mail </span>
-          {/* <div className="PMMEmailInput">
-            <div className="PMMEmailInput">{email}</div>
-          </div> */}
-          <input
-            type="text"
-            className="PMMEmailInput"
-            value={email}
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          />
+          <input type="text" className="PMMEmailInput" value={proFile.email} />
         </div>
 
         <div className="PMMGender">
           <span className="PMMGenderLable">Gender</span>
           <div className="PMMGenderdiv">
             <button
-              className={`btn ${genderCheck === "check" ? "active" : ""}`} // tab 값이 'curr' 이면 active 클래스를 추가
-              onClick={() => setgenderCheck("check")}
+              className={`btn ${genderCheck === "check" ? "active" : ""}`}
+              onClick={() => handleButtonClick("check")} // 'M'에 해당하는 버튼을 클릭했을 때 genderCheck 값을 'check'로 변경
             >
               {gender[0]}
             </button>
             <button
-              className={`-btn ${genderCheck === "prev" ? "active" : ""}`} // tab 값이 'prev' 이면 active 클래스를 추가
-              onClick={() => setgenderCheck("prev")} // 클릭했을 때 tab 값이 'prev'로 변경된다.
+              className={`btn ${genderCheck === "prev" ? "active" : ""}`}
+              onClick={() => handleButtonClick("prev")} // 'F'에 해당하는 버튼을 클릭했을 때 genderCheck 값을 'prev'로 변경
             >
               {gender[1]}
             </button>
           </div>
-          <div className="PMIntroducing">
-            <span className="PMIntroducingLabel">Introducing</span>
-            {/* <input type="text" className="PMIntroducingInput"></input> */}
-            <input
-              type="text"
-              className="PMIntroducingInput"
-              value={introducing}
-              onChange={(event) => {
-                setIntroducing(event.target.value);
-              }}
-            />
-          </div>
+        </div>
+
+        <div className="PMIntroducing">
+          <span className="PMIntroducingLabel">Introducing</span>
+          <input
+            type="text"
+            className="PMIntroducingInput"
+            value={proFile.introduce ? proFile.introduce : introInput}
+            onChange={introHandleChange}
+          />
         </div>
       </div>
-      <button className="ModalOut" onClick={showMyinfoModal}>
-        {/* <button className="ModalOut" onClick={UserEdit}> */}
+      <button
+        className="ModalOut"
+        onClick={() => {
+          showMyinfoModal();
+          showAlertModal();
+          handleSave();
+        }}
+      >
         <span className="ModalOutText">confirm</span>
-        {/* 이미지 업로드 input 추가하기
-        <input
-          type="file"
-          accept="image/*"
-          id="profileImg"
-          onClick={saveImgFile}
-          ref={imgRef}
-        /> */}
       </button>
     </div>
   );

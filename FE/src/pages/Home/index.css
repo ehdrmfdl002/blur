@@ -14,16 +14,6 @@
   arg: size
   desc: 인자(size)를 받아 원을 만듦
 */
-@-webkit-keyframes smoothAppear {
-  from {
-    opacity: 0;
-    transform: translateX(-5%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
 @keyframes smoothAppear {
   from {
     opacity: 0;
@@ -39,8 +29,8 @@
   position: absolute;
   right: 4.514vw;
   left: 4.514vw;
-  top: 10.903vw;
-  bottom: 5.556vw;
+  top: 20vh;
+  bottom: 10vh;
   background: rgba(255, 255, 255, 0.19);
   border: 0.052vw solid rgba(255, 255, 255, 0.5);
   box-shadow: 0vw 0.209vw 0.209vw rgba(0, 0, 0, 0.25);
@@ -48,113 +38,105 @@
 }
 .HomeSubFrame .HomeLeftDiv {
   position: absolute;
-  width: 517.5px;
-  height: 450px;
-  left: 60px;
-  top: 30px;
+  height: 31.25vw;
+  width: 35.9375vw;
+  left: 4.1667vw;
+  top: 2.0833vw;
 }
 .HomeSubFrame .HomeLeftDiv .HomeCamDiv {
   position: absolute;
-  width: 340px;
-  height: 340px;
-  left: 71.25px;
-  top: 0px;
-  background: url(../../assets/images/HomeCamImg.png);
-  background-size: cover;
-  border-radius: 30px;
-}
-.HomeSubFrame .HomeLeftDiv .HomeCamDiv .HomeCamImg {
-  position: absolute;
-  width: 375px;
-  height: 250px;
-  left: 0px;
-  top: 0px;
-  border-radius: 30px;
+  height: 75%;
+  width: 84.6%;
+  left: 2.0833vw;
+  top: 1vh;
+  background: url(../../assets/images/man4.jfif);
+  background-size: 100% 100%;
+  border-radius: 2.0833vw;
 }
 .HomeSubFrame .HomeLeftDiv .InfoBlurBtn {
   position: absolute;
-  width: 37.5px;
-  height: 37.5px;
-  left: 420px;
-  top: 230px;
+  height: 2.4306vw;
+  width: 2.4306vw;
+  left: 33.3333vw;
+  top: 11.1111vw;
   background: url(../../assets/images/info.png);
-  background-size: cover;
+  background-size: 100% 100%;
 }
 .HomeSubFrame .HomeLeftDiv .CamToggle {
   position: absolute;
-  width: 37.5px;
-  height: 37.5px;
-  left: 420px;
-  top: 270px;
-  background: url(../../assets/images/MPMyCam.png);
+  height: 2.2917vw;
+  width: 2.2917vw;
+  left: 33.3333vw;
+  top: 13.8889vw;
+  background: url(../../assets/images/camera.png);
   background-size: cover;
 }
 .HomeSubFrame .HomeLeftDiv .CommBoxFrame2 {
   position: absolute;
-  width: 440px;
-  height: 70px;
-  left: 30px;
-  top: 350px;
+  height: 10vh;
+  width: 30.5556vw;
+  left: 2.0833vw;
+  top: 51vh;
   background: #50a1a3;
-  border-radius: 15px;
+  border-radius: 1.0417vw;
 }
 .HomeSubFrame .HomeLeftDiv .CommBoxFrame2 .CommBoxFrameStart {
   position: absolute;
-  width: 440px;
-  height: 50px;
-  left: 0px;
-  top: 10px;
+  height: 3.4722vw;
+  width: 30.5556vw;
+  left: 0vw;
+  top: 1.2vh;
   font-weight: 400;
-  font-size: 41.25px;
-  line-height: 50px;
+  line-height: 3.4722vw;
+  font-size: 2.8646vw;
   text-align: center;
   color: #ffffff;
   cursor: pointer;
 }
 .HomeSubFrame .HomeRightDiv {
   position: absolute;
-  width: 533.25px;
-  height: 450px;
-  left: 780px;
-  top: 30px;
-  -webkit-animation: smoothAppear 1s;
-          animation: smoothAppear 1s;
+  height: 31.25vw;
+  width: 37.0313vw;
+  left: 46vw;
+  top: 2.0833vw;
+  animation: smoothAppear 1s;
 }
 .HomeSubFrame .HomeRightDiv .HomeRightImgDiv {
   position: absolute;
-  width: 550px;
-  height: 340px;
-  left: 0px;
-  top: 0px;
-  border-radius: 30px;
+  height: 23.6111vw;
+  width: 38.1944vw;
+  left: 0vw;
+  top: 0vw;
+  border-radius: 2.0833vw;
   transition: all 0.3s;
 }
 .HomeSubFrame .HomeRightDiv .HomeRightImgDiv .HomeRightImg {
   position: absolute;
-  width: 550px;
-  height: 340px;
-  left: 0px;
-  top: 0px;
+  height: 47vh;
+  width: 38.1944vw;
+  left: 0vw;
+  top: 1vh;
+  border-radius: 2.0833vw;
 }
 .HomeSubFrame .HomeRightDiv .HomeRightToolTipDiv {
   position: absolute;
-  width: 550px;
-  height: 80px;
-  left: 0px;
-  top: 350px;
+  height: 10vh;
+  width: 38.1944vw;
+  left: 0vw;
+  top: 51vh;
   background: #fffdfd;
-  border-radius: 15px;
+  border-radius: 1.0417vw;
 }
 .HomeSubFrame .HomeRightDiv .HomeRightToolTipDiv .HomeRightToolTipText {
   position: absolute;
-  width: 421px;
-  height: 27px;
-  left: 56.25px;
-  top: 16.5px;
+  height: 1.875vw;
+  width: 38.1944vw;
+  left: 0vw;
+  top: 3vh;
   font-family: "Happy Monkey";
   font-style: normal;
   font-weight: 400;
-  font-size: 15px;
-  line-height: 27px;
+  line-height: 1.875vw;
+  font-size: 1.5vw;
   color: #50a1a3;
 }/*# sourceMappingURL=index.css.map */

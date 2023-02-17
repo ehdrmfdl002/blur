@@ -22,7 +22,7 @@
   top: -1px;
   background: #50a1a3;
   border-radius: 30px;
-  z-index: 20;
+  z-index: 30;
 }
 .leftModal .imgbox {
   position: absolute;
@@ -34,15 +34,16 @@
 .leftModal .imgbox .imageEditBtn {
   position: absolute;
   width: 50px;
-  height: 20px;
+  height: 22px;
   left: 220px;
   top: 10px;
   border-radius: 70px;
   border: solid white 1px;
   color: white;
   cursor: pointer;
+  background-color: #50a1a3;
 }
-.leftModal .imgbox :hover {
+.leftModal .imgbox .imageEditBtn:hover {
   background-color: white;
   color: black;
 }
@@ -52,9 +53,9 @@
   height: 230px;
   left: 15px;
   top: 0px;
-  border: solid #ffffff 1px;
   background-size: 100% 100%;
   border-radius: 70%;
+  cursor: pointer;
 }
 
 .leftModalNameDiv {
@@ -151,14 +152,13 @@
   position: absolute;
   width: 1310px;
   height: 570px;
-  left: 6.5%;
-  top: 7%;
-  z-index: 10;
+  left: 7%;
+  top: 11%;
+  z-index: 30;
   background: #ffffff;
   border: 0.751852px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0px 3.00741px 3.00741px rgba(0, 0, 0, 0.25);
   border-radius: 30.0741px;
-  z-index: 10;
 }
 .Modal .ModalOut {
   position: absolute;
@@ -166,7 +166,7 @@
   height: 55px;
   left: 1090px;
   top: 445px;
-  z-index: 20;
+  z-index: 2;
   cursor: pointer;
   background: #68bbbd;
   border-radius: 7.51852px;
@@ -229,10 +229,12 @@
 }
 .Modal .ProfileModal .PMIdDiv .PMIdInput {
   position: absolute;
-  width: 330px;
+  width: 300px;
   height: 60px;
   left: 0px;
   top: 30px;
+  font-size: 20px;
+  padding-left: 30px;
   background: rgba(104, 187, 189, 0.2);
   border-radius: 7px;
 }
@@ -258,12 +260,14 @@
 }
 .Modal .ProfileModal .PMAge .PMAgeSelect {
   position: absolute;
-  width: 330px;
+  width: 300px;
   height: 60px;
   left: 0px;
   top: 30px;
+  font-size: 20px;
   background: rgba(104, 187, 189, 0.2);
   border-radius: 7px;
+  padding-left: 30px;
 }
 .Modal .ProfileModal .PMMBTI {
   position: absolute;
@@ -291,6 +295,7 @@
   height: 60px;
   left: 0px;
   top: 30px;
+  padding-left: 95px;
   background: rgba(104, 187, 189, 0.2);
   border-radius: 7px;
 }
@@ -316,12 +321,14 @@
 }
 .Modal .ProfileModal .PMMEmail .PMMEmailInput {
   position: absolute;
-  width: 330px;
+  width: 300px;
   height: 60px;
   left: 0px;
   top: 30px;
+  font-size: 20px;
   background: rgba(104, 187, 189, 0.2);
   border-radius: 7px;
+  padding-left: 30px;
 }
 .Modal .ProfileModal .PMMGender {
   position: absolute;
@@ -349,6 +356,7 @@
   height: 60px;
   left: 0px;
   top: 30px;
+  display: flex;
 }
 .Modal .ProfileModal .PMMGender .PMMGenderdiv .PMMGenderMale {
   position: absolute;
@@ -392,14 +400,14 @@
 .Modal .ProfileModal .PMMGender .PMMGenderdiv :hover {
   background-color: #16888a;
 }
-.Modal .ProfileModal .PMMGender .PMIntroducing {
+.Modal .ProfileModal .PMIntroducing {
   position: absolute;
   width: 330px;
   height: 200px;
-  left: 0px;
-  top: 100px;
+  left: 430px;
+  top: 180px;
 }
-.Modal .ProfileModal .PMMGender .PMIntroducing .PMIntroducingLabel {
+.Modal .ProfileModal .PMIntroducing .PMIntroducingLabel {
   position: absolute;
   width: 330px;
   height: 20px;
@@ -412,12 +420,13 @@
   align-items: center;
   color: #000000;
 }
-.Modal .ProfileModal .PMMGender .PMIntroducing .PMIntroducingInput {
+.Modal .ProfileModal .PMIntroducing .PMIntroducingInput {
   position: absolute;
-  width: 330px;
+  width: 325px;
   height: 170px;
   left: 0px;
   top: 30px;
+  font-size: 20px;
   background: rgba(104, 187, 189, 0.2);
   border-radius: 7px;
 }
@@ -538,7 +547,7 @@
   width: 200px;
   height: 50px;
   left: 0px;
-  top: 20px;
+  top: 25px;
   font-weight: 400px;
   font-size: 25px;
   line-height: 18px;
@@ -601,7 +610,7 @@
   width: 200px;
   height: 50px;
   left: 0px;
-  top: 20.25px;
+  top: 30px;
   font-weight: 400px;
   font-size: 25px;
   line-height: 18px;
@@ -716,4 +725,8 @@ input {
   color: #0095f6;
   display: inline-block;
   cursor: pointer;
+}
+
+select {
+  border: none;
 }/*# sourceMappingURL=myInfoModal.css.map */

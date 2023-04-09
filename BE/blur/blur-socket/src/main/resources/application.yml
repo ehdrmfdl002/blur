@@ -1,7 +1,7 @@
 server:
   port: 7777
   ssl:
-    key-store: /etc/letsencrypt/live/i8b307.p.ssafy.io:fullchain.pem
+    key-store: ${KEY_STORE}
     key-store-type: PEM
 
 

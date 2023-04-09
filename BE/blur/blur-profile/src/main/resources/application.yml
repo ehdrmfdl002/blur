@@ -13,8 +13,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://i8b307.p.ssafy.io:3310/blurProfile?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
-    username: blur
-    password: blur
+    username: ${DB_NAME}
+    password: ${DB_PASSWORD}
     hikari:
       pool-name: jpa-hikari-pool
       maximum-pool-size: 5
@@ -45,10 +45,10 @@ spring:
 cloud:
   aws:
     credentials:
-      accessKey: AKIAXM2ROBDTA7R7L6M4      # AWS IAM AccessKey 적기
-      secretKey: 9RJ1UENpMmk6c/3DZmPV2YQoZhOvTWSgAXh5JOOo   # AWS IAM SecretKey 적기
+      accessKey: ${AWS_ACCESSKEY}     # AWS IAM AccessKey 적기
+      secretKey: ${AWS_SECRETKEY}   # AWS IAM SecretKey 적기
     s3:
-      bucket: blur307bucket    # ex) marryting-gyunny
+      bucket: ${AWS_BUCKET}    # ex) marryting-gyunny
       dir: /blur # ex) /gyunny
     region:
       static: ap-northeast-2

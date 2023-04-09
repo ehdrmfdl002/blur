@@ -13,8 +13,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://i8b307.p.ssafy.io:3309/blurMatch?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
-    username: blur
-    password: blur
+    username: ${DB_NAME}
+    password: ${DB_PASSWORD}
     hikari:
       pool-name: jpa-hikari-pool
       maximum-pool-size: 5

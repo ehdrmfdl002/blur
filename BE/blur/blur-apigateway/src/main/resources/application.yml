@@ -79,9 +79,5 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
 
-  #token:
-  #  secret: blurUserTokenblurUserTokenblurUserTokenblurUserTokenblurUserTokenblurUserTokenblurUserTokenblurUserToken
-
-  
   # jwt secret key 설정
-jwt.secret: '8sknjlO3NPTBqo319DHLNqsQAfRJEdKsETOds'
+jwt.secret: ${JWT_SECRET}
